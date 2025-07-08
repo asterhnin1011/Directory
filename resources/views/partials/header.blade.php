@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+		<link rel="shortcut icon" type="image/x-icon" href="assets/img/C.jpg">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		<!-- CSS here -->
@@ -56,7 +56,7 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/loder.jpg" alt="">
+                    <img src="assets/img/logo/C.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -72,8 +72,10 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                  <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
-                                </div>
+  <a href="pages/index.html">
+    <img src="assets/img/logo/C.jpg" alt="Logo" width="100" height="auto">
+  </a>
+</div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-8">
                                 <!-- Main-menu -->
