@@ -9,7 +9,7 @@ class Place extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'poi';
+    protected $table = 'pois';
       protected $fillable = [
         'user_id', 'fid', 'shape', 'dps_id', 'source_id', 'source', 'uid',
         'poi_n_eng', 'poi_n_win', 'poi_n_zaw', 'poi_n_myn3', 'type', 'dps_tsp',

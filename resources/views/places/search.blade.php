@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Search Results')
-
 @section('content')
 <br><br><br><br><br>
 <div class="container py-4">
@@ -18,6 +16,7 @@
                         <th>Address</th>
                         <th>Phone</th>
                         <th>Map</th>
+                        <th>More Info</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,6 +46,21 @@
                                     <span class="text-muted">No location</span>
                                 @endif
                             </td>
+                             <td>
+    <a href="{{ url('places/' . $place->id) }}"
+       {{-- class="btn btn-sm btn-info text-white" --}}
+           style="background-color: #007bff;
+                                              color: white;
+                                              font-size: 0.75rem;
+                                              padding: 4px 8px;
+                                              border-radius: 4px;
+                                              text-decoration: none;
+                                              display: inline-block;"
+                                       onmouseover="this.style.backgroundColor='#0056b3'"
+                                       onmouseout="this.style.backgroundColor='#007bff'">
+        🔍 Detail
+    </a>
+</td>
                         </tr>
                     @endforeach
                 </tbody>

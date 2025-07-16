@@ -9,8 +9,9 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/C.jpg">
+		<link rel="shortcut icon" type="image/x-icon" href="assets\img\logo\directorylogo.png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
 		<!-- CSS here -->
             <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -44,6 +45,15 @@
     .dark-mode .single-team {
         background-color: #2c2c2c;
     }
+    .header-area {
+    background: rgba(255, 255, 255, 0.2); /* light background with transparency */
+    backdrop-filter: blur(10px); /* blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background 0.3s ease-in-out;
+}
 </style>
 
             @stack('css')
@@ -56,67 +66,72 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    <img src="assets/img/logo/C.jpg" alt="">
+                    <img src="assets\img\logo\directorylogo.png" alt="">
                 </div>
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
-    <header>
+    <!-- Preloader end -->
+ <!-- Header Content -->
+    <div style="position: relative; z-index: 2;">
         <!-- Header Start -->
-       <div class="header-area header-transparent">
-            <div class="main-header">
-               <div class="header-bottom  header-sticky">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <!-- Logo -->
-                            <div class="col-xl-2 col-lg-2 col-md-1">
-                                <div class="logo">
-  <a href="pages/index.html">
-    <img src="assets/img/logo/C.jpg" alt="Logo" width="100" height="auto">
-  </a>
-</div>
-                            </div>
-                            <div class="col-xl-10 col-lg-10 col-md-8">
-                                <!-- Main-menu -->
-                                <div class="main-menu f-right d-none d-lg-block">
-    <nav>
-        <ul id="navigation">
-            <li><a href="/">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="catagori.html">Catagories</a></li>
-            <li><a href="listing.html">Listing</a></li>
-            <li><a href="#">Page</a>
-                <ul class="submenu">
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="blog_details.html">Blog Details</a></li>
-                    <li><a href="elements.html">Element</a></li>
-                    <li><a href="listing_details.html">Listing details</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-            <li class="add-list"><a href="listing_details.html"><i class="ti-plus"></i> add Listing</a></li>
-            <li class="login">
-    <a href="{{ route('login') }}">
-        <i class="ti-user"></i> Sign in or Register
-    </a>
-</li>
-            <li>
-    <button id="theme-toggle" class="border-0 bg-transparent text-white" style="font-size: 20px;">
-        🌙
-    </button>
-</li>
-        </ul>
-    </nav>
-</div>
-                            <!-- Mobile Menu -->
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
+        <header>
+            <div class="header-area header-transparent" style="background: rgba(24, 47, 224, 0.915); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+                <div class="main-header">
+                    <div class="header-bottom header-sticky">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <!-- Logo -->
+                                <div class="col-xl-2 col-lg-2 col-md-1">
+                                    <div class="logo">
+                                        <a href="pages/index.html">
+                                            <img src="assets/img/logo/directorylogo.png" alt="Logo" width="100" height="auto">
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- Main Menu -->
+                                <div class="col-xl-10 col-lg-10 col-md-8">
+                                    <div class="main-menu f-right d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">
+                                                <li><a href="/">Home</a></li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="catagori.html">Catagories</a></li>
+                                                <li><a href="listing.html">Listing</a></li>
+                                                <li><a href="#">Page</a>
+                                                    <ul class="submenu">
+                                                        <li><a href="blog.html">Blog</a></li>
+                                                        <li><a href="blog_details.html">Blog Details</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li class="add-list">
+                                                    <a href="listing_details.html"><i class="ti-plus"></i> add Listing</a>
+                                                </li>
+                                                <li class="login">
+                                                    <a href="{{ route('login') }}">
+                                                        <i class="ti-user"></i> Sign in or Register
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <button id="theme-toggle" class="border-0 bg-transparent text-white" style="font-size: 20px;">
+                                                        🌙
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <!-- Mobile Menu -->
+                                <div class="col-12">
+                                    <div class="mobile_menu d-block d-lg-none"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
-       </div>
+        </header>
         <!-- Header End -->
-    </header>
+    </div>
+</div>

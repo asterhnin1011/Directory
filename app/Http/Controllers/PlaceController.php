@@ -27,5 +27,10 @@ class PlaceController extends Controller
 
         return view('places.search', compact('places'));
     }
+    public function details($id)
+{
+    $place = Place::findOrFail($id);
+    return view('places.details', compact('place'));
+}
 
 }

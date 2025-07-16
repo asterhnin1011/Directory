@@ -27,7 +27,7 @@ Route::get('/', function () {
 // Route::get('/admin', [UserController::class, 'index'])
 //     ->name('admin.home')
 //     ->middleware('auth');
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.home')->middleware('auth');   
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.home')->middleware('auth');
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']], function () {
     // Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('/', AdminController::class)
@@ -40,7 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']
 });
 
 
-// Route::get('/admin.users',[UserController::class, 'users'])->name('admin.users')->middleware('auth'); 
+// Route::get('/admin.users',[UserController::class, 'users'])->name('admin.users')->middleware('auth');
 Route::get('/create-poi', [PoiController::class, 'store']);
 Route::get('/search', [PlaceController::class, 'search'])->name('places.search');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -50,3 +50,4 @@ Route::get('/register', [RegisterController::class, 'create'])->name('register')
 Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/auth/redirect/{provider}', [SocialController::class, 'redirect'])->name('social.redirect');
 Route::get('/auth/callback/{provider}', [SocialController::class, 'callback'])->name('social.callback');
+Route::get('/places/{id}', [PlaceController::class, 'details']);
