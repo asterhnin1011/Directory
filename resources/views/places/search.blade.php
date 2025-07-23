@@ -12,7 +12,7 @@
                     <tr>
                         <th>Name (English)</th>
                         <th>Name (Myanmar)</th>
-                        <th>Type</th>
+                      
                         <th>Address</th>
                         <th>Phone</th>
                         <th>Map</th>
@@ -24,7 +24,7 @@
                         <tr>
                             <td>{{ $place->poi_n_eng ?? 'No Name' }}</td>
                             <td>{{ $place->poi_n_myn3 ?? 'No Name' }}</td>
-                            <td>{{ $place->type ?? 'No Type' }}</td>
+                            
                             <td>{{ $place->address ?? 'No Address' }}</td>
                             <td>{{ $place->phone ?? 'N/A' }}</td>
                             <td>

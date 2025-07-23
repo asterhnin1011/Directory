@@ -1,191 +1,194 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+@keyframes fade-in-down {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in-down {
+    animation: fade-in-down 0.3s ease-out forwards;
+}
+</style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+      <!--  Header Navbar with Blur -->
+    <header class="backdrop-blur-md bg-white/30 fixed top-0 left-0 w-full z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Home Button -->
+        <a href="/" class="text-xl font-semibold text-blue-700 hover:text-blue-800 flex items-center space-x-2">
+            <!-- Home Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 9.75L12 4l9 5.75M4.5 10.5v8.25a1.5 1.5 0 001.5 1.5H9v-6h6v6h3a1.5 1.5 0 001.5-1.5V10.5" />
+            </svg>
+            <span>Home</span>
+        </a>
 
-@section('title', 'Register')
+        <!-- Nav Links -->
+        <nav class="space-x-6 text-sm text-gray-700 font-medium flex items-center">
+            <!-- Register -->
+            <a href="{{ route('register') }}" class="flex items-center hover:underline space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM20 8v6M23 11h-6" />
+                </svg>
+                <span>Register</span>
+            </a>
 
-@section('content')
-<section class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
-
-  <div class="container px-3">
-    <div class="row justify-content-center">
-      <div class="col-lg-5">
-<br><br><br><br><br><br>
-        <div class="card border-0 shadow rounded-4 p-4 glass-effect">
-
-          <div class="card-body" style="height: 500px;">
-
-            <h2 class="text-center mb-3">Create Your Account</h2>
-
-            <form method="POST" action="{{ route('register') }}">
-              @csrf
-
-              <!-- Username -->
-         <div class="mb-3">
-  <label for="name" class="block text-sm font-medium text-gray-700">Username</label>
-  <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value="{{ old('name') }}" required>
-  @error('name')
-    <small class="text-red-500 text-sm">{{ $message }}</small>
-  @enderror
-</div>
-              <!-- Email -->
-              <div class=" mb-3">
-                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md boorder-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue=500 sm:text-sm" value="{{ old('email') }}" required>
-                @error('email')
-                  <small class="text-red-500 text-sm">{{ $message }}</small>
-                @enderror
-              </div>
-
-              <!-- Password -->
-              <div class="mb-3">
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-           <input type="password" id="password" name="password" class="mt-1 block w-full rounded-md boorder-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue=500 sm:text-sm" value="{{ old('password') }}" required>
-           <span
-    class="absolute inset-y-0 right-3 flex items-center text-sm text-blue-600 cursor-pointer select-none"
-    onclick="togglePassword()"
-    id="togglePassword">
-    Show
-  </span>
-                @error('password')
-                  <small class="text-red-500 text-sm">{{ $message }}</small>
-                @enderror
-
-              </div>
-
-              <!-- Confirm Password -->
-             <div class="mb-3 relative">
-  <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-
-  <input
-    type="password"
-    id="password_confirmation"
-    name="password_confirmation"
-    class="mt-1 block w-full pr-16 rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-    required
-  >
-
-  <span
-    class="absolute inset-y-0 right-3 flex items-center text-sm text-blue-600 cursor-pointer select-none"
-    onclick="togglePassword2()"
-    id="togglePassword2"
-  >
-    Show
-  </span>
-
-  @error('password_confirmation')
-    <small class="text-red-500 text-sm">{{ $message }}</small>
-  @enderror
-</div>
-
-              <!-- Register Button -->
-              <button type="submit" class="btn-primary w-100 mb-3">Register</button>
-
-              <!-- Social Logins -->
-              <div class="text-center mb-3">
-  <p class="mb-2 text-muted">Or register with</p>
-  <div class="d-grid gap-2">
-    <a href="" class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" width="20" height="20">
-      Register with Google
-    </a>
-
-    <a href="" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook" width="20" height="20">
-      Register with Facebook
-    </a>
-  </div>
-</div>
-
-              <!-- Login link -->
-              <p class="text-center mt-3">
-                Already have an account?
-                <a href="{{ route('login') }}" class="text-danger">Login here</a>
-              </p>
-            </form>
-          </div>
-        </div>
-      </div>
+            <!-- Login -->
+            <a href="{{ route('login') }}" class="flex items-center hover:underline space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15 12H3m0 0l4-4m-4 4l4 4m13-8v8a2 2 0 01-2 2H9" />
+                </svg>
+                <span>Login</span>
+            </a>
+        </nav>
     </div>
-  </div>
-</section>
+</header>
 
-<!-- Show/Hide Password -->
+    <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-center mb-6">Create an Account</h2>
+
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-3 mb-4 rounded">
+                <ul class="list-disc list-inside text-sm">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+
+            <!-- Username -->
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-semibold text-gray-600">Username</label>
+                <input type="text" id="name" name="name" value="{{ old('name') }}" required class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Email -->
+<div class="mb-4">
+    <label for="email" class="block text-sm font-semibold text-gray-600">Email</label>
+    <input type="email" id="email" name="email" value="{{ old('email') }}" required
+        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('email') border-red-500 @enderror">
+    @error('email')
+        <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
+<!-- Password -->
+<div class="mb-4 relative">
+    <label for="password" class="block text-sm font-semibold text-gray-600">Password</label>
+    <input type="password" id="password" name="password" required
+        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 @error('password') border-red-500 @enderror">
+    <button type="button" onclick="togglePassword('password', this)"
+        class="absolute top-9 right-3 text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />
+        </svg>
+    </button>
+    @error('password')
+        <p class="text-sm text-red-500 mt-1">{{ $message }}</p>
+    @enderror
+</div>
+
+<!-- Confirm Password -->
+<div class="mb-6 relative">
+    <label for="password_confirmation" class="block text-sm font-semibold text-gray-600">Confirm Password</label>
+    <input type="password" id="password_confirmation" name="password_confirmation" required
+        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <button type="button" onclick="togglePassword('password_confirmation', this)"
+        class="absolute top-9 right-3 text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />
+        </svg>
+    </button>
+</div>
+
+<!-- Password Toggle Script -->
 <script>
-  function togglePassword() {
-    const input = document.getElementById("password");
-    const toggle = document.getElementById("togglePassword");
-    const isPassword = input.type === "password";
-
-    input.type = isPassword ? "text" : "password";
-    toggle.textContent = isPassword ? "Hide" : "Show";
-  }
-    function togglePassword2() {
-    const input = document.getElementById("password_confirmation");
-    const toggle = document.getElementById("togglePassword2");
-    const isHidden = input.type === "password";
-
-    input.type = isHidden ? "text" : "password";
-    toggle.textContent = isHidden ? "Hide" : "Show";
-  }
+    function togglePassword(fieldId, btn) {
+        const input = document.getElementById(fieldId);
+        input.type = input.type === 'password' ? 'text' : 'password';
+    }
 </script>
 
-<!-- CSS Styling -->
-<style>
-    .btn img {
-    border-radius: 50%;
-  }
+            <!-- Submit -->
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+                Register
+            </button>
+        </form>
+    @if(session('success'))
+    <div id="successAlert" class="fixed top-5 right-5 bg-green-500 text-white px-5 py-3 rounded shadow-lg z-50 transition-all">
+        {{ session('success') }}
+    </div>
 
-  .btn:hover img {
-    opacity: 0.9;
-  }
-  .form-group {
-    position: relative;
-  }
+    <script>
+        setTimeout(() => {
+            const alert = document.getElementById('successAlert');
+            if (alert) alert.remove();
+        }, 4000); // auto-dismiss after 4 seconds
+    </script>
+@endif
 
-  .form-group input {
-    padding: 1.2rem 0.75rem 0.4rem;
-  }
+        <!-- Divider -->
+        <div class="flex items-center my-6">
+            <hr class="flex-grow border-t border-gray-300">
+            <span class="mx-4 text-gray-500">or</span>
+            <hr class="flex-grow border-t border-gray-300">
+        </div>
 
-  .form-group label {
-    position: absolute;
-    top: 1.1rem;
-    left: 0.75rem;
-    font-size: 1rem;
-    color: #777;
-    background: white;
-    padding: 0 0.25rem;
-    transition: 0.2s ease;
-    pointer-events: none;
-  }
+        <!-- Register with Google -->
+        {{-- <a href="{{ route('google.redirect') }}" class="w-full block bg-red-500 text-white py-2 text-center rounded-md hover:bg-red-600 transition">
+            Register with Google
+        </a> --}}
 
-  .form-group input:focus + label,
-  .form-group input:not(:placeholder-shown) + label {
-    top: 0.4rem;
-    font-size: 0.8rem;
-    color: #007bff;
-  }
+        <p class="mt-4 text-sm text-center text-gray-600">
+            Already have an account? <a href="{{ route('login') }}" class="text-blue-600 hover:underline">Login</a>
+        </p>
+    </div>
 
-  .toggle-password {
-    position: absolute;
-    right: 1rem;
-    top: 1.1rem;
-    font-size: 0.9rem;
-    color: #007bff;
-    cursor: pointer;
-    user-select: none;
-  }
+    <script>
+    function togglePassword(fieldId, btn) {
+        const input = document.getElementById(fieldId);
+        const icon = btn.querySelector('svg');
+        const isVisible = input.type === 'text';
 
-  .glass-effect {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-  }
+        input.type = isVisible ? 'password' : 'text';
 
-  @media (max-width: 576px) {
-    .form-group input {
-      padding: 1rem 0.75rem 0.4rem;
+        icon.innerHTML = isVisible
+            ? `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7S3.732 16.057 2.458 12z" />`
+            : `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                   d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.07 10.07 0 012.338-4.114M15 12a3 3 0 11-6 0 3 3 0 016 0zM3 3l18 18" />`;
     }
-     .form-control {
-    padding: 1.5rem 0.75rem 0.5rem;
-    font-size: 1rem;
-  }
-</style>
-@endsection
+</script>
+</body>
+</html>

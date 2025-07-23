@@ -5,9 +5,23 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    // use AuthenticatesUsers;
+
+    // /**
+    //  * Where to redirect users after login.
+    //  *
+    //  * @var string
+    //  */
+    // protected $redirectTo = '/blog/index';
+
+    // public function __construct()
+    // {
+    //     $this->middleware('guest')->except('logout');
+    // }
     // This method is called after a user is authenticated
     protected function authenticated(Request $request, $user)
     {
@@ -15,7 +29,7 @@ class LoginController extends Controller
             return redirect('/admin'); // Redirect to admin home page
         }
 
-        return redirect('/'); // or any user dashboard
+         return redirect()->route('blog.index');  // or any user dashboard
     }
     //show login form
     public function showLoginForm()

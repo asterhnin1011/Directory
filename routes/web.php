@@ -9,6 +9,12 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SocialController;
 // use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\GoogleController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +25,7 @@ use App\Http\Controllers\AdminController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('pages.index');
 });
@@ -43,11 +49,74 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']
 // Route::get('/admin.users',[UserController::class, 'users'])->name('admin.users')->middleware('auth');
 Route::get('/create-poi', [PoiController::class, 'store']);
 Route::get('/search', [PlaceController::class, 'search'])->name('places.search');
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->only('email', 'password');
+
+    if (Auth::attempt($credentials)) {
+          return redirect()->route('blog.index');  // Always go here after login
+    }
+
+    return back()->with('error', 'Invalid credentials.');
+});
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
+// Show register form
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+// Handle form submit
+Route::post('/register', [RegisterController::class, 'register']);
+
 Route::get('/auth/redirect/{provider}', [SocialController::class, 'redirect'])->name('social.redirect');
 Route::get('/auth/callback/{provider}', [SocialController::class, 'callback'])->name('social.callback');
 Route::get('/places/{id}', [PlaceController::class, 'details']);
+Route::get('/about', function () {
+    return view('pages.aboutus'); // Make sure your file is at resources/views/aboutus.blade.php
+})->name('about');
+Route::get('/places/{id}', [PlaceController::class, 'show'])->name('places.details');
+// Guest users can see blog
+Route::get('/blog', [App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+    Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
+});
+Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit');
+Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update');
+Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->middleware('auth');
+
+Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
+// Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google.redirect');
+// Route::get('auth/google/callback', [GoogleController::class, 'callback']);
+
+// Show email verification notice
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// Handle the verification link click
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    // Redirect based on user role
+    if (auth()->user()->isAdmin()) {
+        return redirect('/admin');
+    } else {
+        return redirect('/blog'); // or any user dashboard
+    }
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Resend the verification email
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('status', 'verification-link-sent');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+// Route::get('/blog', function () {
+//     return view('blog.index');
+// })->middleware(['auth', 'verified'])->name('blog.index');
+
+

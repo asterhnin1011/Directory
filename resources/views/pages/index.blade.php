@@ -5,7 +5,7 @@
 
         <!-- Hero Area Start-->
         <div class="slider-area hero-overly">
-            <div class="single-slider hero-overly  slider-height d-flex align-items-center">
+         <div class="single-slider hero-overly slider-height d-flex align-items-center hero-bottom-space">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-9">
@@ -36,7 +36,6 @@
         <a href="#" id="searchLink" onclick="buildSearchURL()">Search</a>
     </div>
 </form>
-
 <script>
 function buildSearchURL() {
     const query = document.getElementById('queryInput').value.trim();
@@ -202,112 +201,6 @@ function buildSearchURL() {
             </div>
         </div>
         <!-- Services Area End -->
-        <!-- Categories Area Start -->
-        <div class="categories-area section-padding30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle text-center mb-80">
-                            <span>We are offering for you</span>
-                            <h2>Featured Categories</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-bed"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5><a href="catagori.html">Leving Hotel</a></h5>
-                                <p>Must explain your how this keind denoun pleasure</p>
-                                <a href="catagori.html">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-drink"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5><a href="catagori.html">Night Life</a></h5>
-                                <p>Must explain your how this keind denoun pleasure</p>
-                                <a href="catagori.html">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-home"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5><a href="catagori.html">Culture Place</a></h5>
-                                <p>Must explain your how this keind denoun pleasure</p>
-                                <a href="catagori.html">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-food"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5><a href="catagori.html">Resturent</a></h5>
-                                <p>Must explain your how this keind denoun pleasure</p>
-                                <a href="catagori.html">View Details</a>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-            </div>
-        </div>
-        <!-- Categories Area End -->
-         <!-- peoples-visit Start -->
-         <div class="peoples-visit dining-padding-top">
-            <!-- Single Left img -->
-            <div class="single-visit left-img">
-                <div class="container">
-                    <div class="row justify-content-end">
-                        <div class="col-lg-8">
-                            <div class="visit-caption">
-                                <span>We are offering for you</span>
-                                <h3>Every Month, Millions of People
-                                    visit this site We’ve Built.</h3>
-                                <p>Unlike what its name implies, dry cleaning is not actually a 'dry' process. Clothes are soaked in a different solvent.</p>
-                                <!--Single Visit categories -->
-                                <div class="visit-categories mb-40">
-                                    <div class="visit-location">
-                                        <span class="flaticon-travel"></span>
-                                    </div>
-                                    <div class="visit-cap">
-                                        <h4>Great places in the world</h4>
-                                        <p>Unlike what its name implies, dry cleaning is not actu  process. Clothes soaked differentent.
-                                        </p>
-                                    </div>
-                                </div>
-                                <!--Single Visit categories -->
-                                <div class="visit-categories">
-                                    <div class="visit-location">
-                                        <span class="flaticon-work"></span>
-                                    </div>
-                                    <div class="visit-cap">
-                                        <h4>Biggest category listing</h4>
-                                        <p>Unlike what its name implies, dry cleaning is not actu  process. Clothes soaked differentent.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- peoples-visit End -->
 
         <!-- Blog Ara Start -->
         <div class="home-blog-area section-padding30">

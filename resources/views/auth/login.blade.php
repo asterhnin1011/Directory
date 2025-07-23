@@ -1,103 +1,105 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen" style="background-color:#f0f8ff">
 
-@section('title', 'Login')
+    <!--  Header Navbar with Blur -->
+    <header class="backdrop-blur-md bg-white/30 fixed top-0 left-0 w-full z-50 shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <!-- Home Button -->
+        <a href="/" class="text-xl font-semibold text-blue-700 hover:text-blue-800 flex items-center space-x-2">
+            <!-- Home Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 9.75L12 4l9 5.75M4.5 10.5v8.25a1.5 1.5 0 001.5 1.5H9v-6h6v6h3a1.5 1.5 0 001.5-1.5V10.5" />
+            </svg>
+            <span>Home</span>
+        </a>
 
-@section('content')
-<section class="d-flex align-items-center min-vh-100">
-  <style>
-    .form-group {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 0.5rem 0.25rem 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-      background: transparent;
-      transition: border-color 0.3s ease;
-    }
-    .form-control:focus {
-      border-color: #3b82f6;
-      outline: none;
-    }
-    label {
-      position: absolute;
-      left: 0.5rem;
-      top: 0.9rem;
-      color: #666;
-      font-size: 1rem;
-      pointer-events: none;
-      transition: 0.2s ease all;
-      background: white;
-      padding: 0 0.25rem;
-    }
-    .form-control:focus + label,
-    .form-control:not(:placeholder-shown) + label {
-      top: 0.2rem;
-      left: 0.5rem;
-      font-size: 0.75rem;
-      color: #3b82f6;
-    }
-    .btn-gradient {
-      background: linear-gradient(45deg, #4f46e5, #3b82f6);
-      border: none;
-      color: white;
-      font-weight: 600;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      width: 100%;
-      transition: background 0.3s ease;
-    }
-    .btn-gradient:hover {
-      background: linear-gradient(45deg, #4338ca, #2563eb);
-      color: white;
-    }
-  </style>
+        <!-- Nav Links -->
+        <nav class="space-x-6 text-sm text-gray-700 font-medium flex items-center">
+            <!-- Register -->
+            <a href="{{ route('register') }}" class="flex items-center hover:underline space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100-8 4 4 0 000 8zM20 8v6M23 11h-6" />
+                </svg>
+                <span>Register</span>
+            </a>
 
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-5">
-        <div class="card p-4 shadow-sm">
-          <h2 class="text-center mb-4 fw-bold">Login</h2>
-
-          <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <div class="form-group">
-              <input type="email" name="email" id="email" class="form-control" placeholder=" " required autofocus />
-              <label for="email">Email address</label>
-            </div>
-
-            <div class="form-group">
-              <input type="password" name="password" id="password" class="form-control" placeholder=" " required />
-              <label for="password">Password</label>
-            </div>
-
-            @if ($errors->any())
-              <div class="alert alert-danger">
-                {{ $errors->first() }}
-              </div>
-            @endif
-  <!-- email, password fields -->
-  <button type="submit" class="btn-primary">Login</button>
-
-
-            <p class="text-center mb-2">
-              Don't have an account?
-              <a href="{{ route('register') }}" class="text-primary fw-semibold">Register</a>
-            </p>
-
-            @if (Route::has('password.request'))
-              <p class="text-center">
-                <a href="{{ route('password.request') }}">Forgot your password?</a>
-              </p>
-            @endif
-          </form>
-        </div>
-      </div>
+            <!-- Login -->
+            <a href="{{ route('login') }}" class="flex items-center hover:underline space-x-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M15 12H3m0 0l4-4m-4 4l4 4m13-8v8a2 2 0 01-2 2H9" />
+                </svg>
+                <span>Login</span>
+            </a>
+        </nav>
     </div>
-  </div>
-</section>
-@endsection
+</header>
+
+    <!--  Login Form -->
+    <main class="flex items-center justify-center pt-28 px-4">
+        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-center mb-6">Login to Your Account</h2>
+
+            @if(session('error'))
+                <div class="mb-4 text-red-600">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
+
+                <!-- Email -->
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                    <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-200">
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Password -->
+                <div class="mb-6">
+                    <label for="password" class="block text-gray-700 font-semibold mb-2">Password</label>
+                    <input type="password" name="password" id="password" required
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-blue-200">
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <!-- Submit -->
+                <div class="mb-4">
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+                        Login
+                    </button>
+                </div>
+
+                <!-- Register link -->
+                <div class="text-center text-sm text-gray-600">
+                    Don't have an account?
+                    <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Register here</a>
+                </div>
+            </form>
+        </div>
+    </main>
+<script>
+    feather.replace()
+</script>
+</body>
+</html>

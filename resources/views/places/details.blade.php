@@ -143,17 +143,33 @@
           </div>
 
           <!-- Back Button -->
-          <a href="{{ url()->previous() }}" class="btn btn-light mt-3 rounded-pill px-4 text-primary">← Back to result</a>
+         <a href="{{ url()->previous() }}" class="btn btn-light mt-3 rounded-pill px-4 text-primary">← Back to result</a>
 
         </div>
       </div>
     </div>
+    <!-- RIGHT: QR Code -->
+  <div class="col-md-4 d-flex align-items-start justify-content-center mt-4 mt-md-0">
+    <div class="text-center">
+      <h5 class="text-muted mb-3">📱 Scan to View</h5>
+      <div class="bg-white p-3 rounded shadow">
+       @if(isset($qrCode))
+    {!! $qrCode !!}
+@else
+    <p>QR Code not available.</p>
+@endif
+      </div>
+    </div>
+  </div>
   </div>
 </div>
 
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+        <p>&copy; {{ date('Y') }} City Directory. All rights reserved.</p>
+    </footer>
 </body>
 </html>
