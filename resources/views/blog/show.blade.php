@@ -20,7 +20,11 @@
     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9.978 9.978 0 0112 15c2.21 0 4.243.714 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
-    Welcome, {{ Auth::user()->name }}
+    {{-- Welcome, {{ Auth::user()->name }} --}}
+    {{--  --}}
+    @if (Auth::check())
+    {{ auth()->user()->name ?? 'Guest' }}
+    @endif
 </span>
 </nav>
 
