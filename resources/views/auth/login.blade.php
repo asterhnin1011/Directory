@@ -44,6 +44,15 @@
                 </svg>
                 <span>Login</span>
             </a>
+              <!-- Back -->
+    <a href="javascript:history.back()" class="flex items-center hover:underline space-x-1 text-gray-600 hover:text-indigo-600 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Back</span>
+    </a>
         </nav>
     </div>
 </header>
@@ -59,8 +68,8 @@
                 </div>
             @endif
 
-            <form action="{{ route('login') }}" method="POST">
-                @csrf
+            <form method="POST" action="{{ route('login') }}">
+                    @csrf
 
                 <!-- Email -->
                 <div class="mb-4">

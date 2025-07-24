@@ -11,7 +11,7 @@
                         <div class="col-xl-8 col-lg-9">
                             <!-- Hero Caption -->
                             <div class="hero__caption">
-                                <span>Explore the city</span>
+                                {{-- <span>Explore the city</span> --}}
                                 <h1>Discover Great Places</h1>
                             </div>
                             <!--Hero form -->
@@ -33,30 +33,34 @@
     </div>
 
     <div class="search-form">
-        <a href="#" id="searchLink" onclick="buildSearchURL()">Search</a>
+       <a href="#" id="searchLink" onclick="buildSearchURL()">Search</a>
     </div>
 </form>
 <script>
-function buildSearchURL() {
-    const query = document.getElementById('queryInput').value.trim();
-    const category = document.getElementById('categorySelect').value;
+    function buildSearchURL() {
+        const query = document.getElementById('queryInput').value.trim();
+        const type = document.getElementById('categorySelect').value;
 
-    const params = new URLSearchParams();
-    if (query) params.append('query', query);
-    if (category) params.append('category', category);
+        // Construct the base search URL
+        let url = '/search?';
 
-    const searchURL = '/search?' + params.toString();
+        // Add query and category to the URL if they are present
+        if (query !== '') {
+            url += 'query=' + encodeURIComponent(query) + '&';
+        }
 
-    // Redirect
-    window.location.href = searchURL;
-}
+        if (type !== '') {
+            url += 'type=' + encodeURIComponent(type);
+        }
+
+        // Redirect to the new search URL
+        window.location.href = url;
+    }
 </script>
-
-                        </div>
-                    </div>
-                </div>
-
+    </div>
+        </div>
             </div>
+                </div>
         </div>
         <!--Hero Area End-->
         <!-- Popular Locations Start -->
@@ -149,7 +153,7 @@ function buildSearchURL() {
         </div>
         <!-- Popular Locations End -->
         <!-- Services Area Start -->
-        <div class="services-area pt-150 pb-150 section-bg" data-background="assets/img/gallery/section_bg02.jpg">
+        <div class="services-area pt-150 pb-150 section-bg" data-background="assets/img/gallery/4882066.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -201,63 +205,6 @@ function buildSearchURL() {
             </div>
         </div>
         <!-- Services Area End -->
-
-        <!-- Blog Ara Start -->
-        <div class="home-blog-area section-padding30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle text-center mb-70">
-                            <span>Our blog</span>
-                            <h2>News and tips</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/home_blog1.png" alt="">
-                            </div>
-                            <div class="team-caption">
-                                <span>HEALTH & CARE</span>
-                                <h3><a href="blog.html">The Best SPA Salons For
-                                    Your Relaxation</a></h3>
-                                <p>October 6, 2020by Steve</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/home_blog2.png" alt="">
-                            </div>
-                            <div class="team-caption">
-                                <span>HEALTH & CARE</span>
-                                <h3><a href="blog.html">The Best SPA Salons For
-                                    Your Relaxation</a></h3>
-                                <p>October 6, 2020by Steve</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/gallery/home_blog3.png" alt="">
-                            </div>
-                            <div class="team-caption">
-                                <span>HEALTH & CARE</span>
-                                <h3><a href="blog.html">The Best SPA Salons For
-                                    Your Relaxation</a></h3>
-                                <p>October 6, 2020by Steve</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Blog Ara End -->
 
     </main>
 @endsection

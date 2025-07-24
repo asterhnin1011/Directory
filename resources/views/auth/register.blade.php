@@ -21,7 +21,7 @@
 }
 </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="flex items-center justify-center min-h-screen" style="background-color:#f0f8ff">
       <!--  Header Navbar with Blur -->
     <header class="backdrop-blur-md bg-white/30 fixed top-0 left-0 w-full z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -57,6 +57,15 @@
                 </svg>
                 <span>Login</span>
             </a>
+              <!-- Back -->
+    <a href="javascript:history.back()" class="flex items-center hover:underline space-x-1 text-gray-600 hover:text-indigo-600 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M15 19l-7-7 7-7" />
+        </svg>
+        <span>Back</span>
+    </a>
         </nav>
     </div>
 </header>

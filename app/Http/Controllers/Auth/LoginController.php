@@ -26,6 +26,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if ($user->role === 1) {
+
             return redirect('/admin'); // Redirect to admin home page
         }
 
@@ -39,6 +40,7 @@ class LoginController extends Controller
     //Hidden request login
     public function login(Request $request)
     {
+        // dd('sd');
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {

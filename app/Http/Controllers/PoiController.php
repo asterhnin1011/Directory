@@ -28,10 +28,10 @@ dd($pois);
 }
 
     // Show create form
-    public function create()
-    {
-        return view('pois.create');
-    }
+    // public function create()
+    // {
+    //     return view('pois.create');
+    // }
 
     // Store a new POI
     public function store(Request $request)

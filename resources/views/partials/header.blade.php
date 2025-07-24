@@ -140,7 +140,7 @@
                                                 <li><a href="/">Home</a></li>
                                                 <li><a href="{{ route('about') }}">About</a></li>
                                                 <li><a href="catagori.html">How It Work</a></li>
-                                                <li><a href="listing.html">Listing</a></li>
+                                                {{-- <li><a href="listing.html">Listing</a></li> --}}
                                                 <li><a href="#">Page</a>
                                                     <ul class="submenu">
                                                         <li><a href="{{ route('blog.index') }}">Blog</a></li>
@@ -156,11 +156,11 @@
                                                         <i class="ti-user"></i> Sign in or Register
                                                     </a>
                                                 </li>
-                                                <li>
+                                                {{-- <li>
                                                     <button id="theme-toggle" class="border-0 bg-transparent text-white" style="font-size: 20px;">
                                                         🌙
                                                     </button>
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                         </nav>
                                     </div>

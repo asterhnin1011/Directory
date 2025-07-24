@@ -58,6 +58,10 @@ Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+        if ($user->role === 1) {
+            return redirect('/admin'); // Redirect to admin home page
+        }
           return redirect()->route('blog.index');  // Always go here after login
     }
 

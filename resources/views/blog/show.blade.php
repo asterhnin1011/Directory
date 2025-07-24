@@ -10,22 +10,30 @@
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
 <!-- Floating Navbar -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 shadow px-6 py-4 flex justify-between items-center">
-  <div class="text-xl font-bold text-indigo-700 dark:text-indigo-300">My Blog</div>
-  {{-- <button onclick="toggleDarkMode()" class="text-sm px-4 py-2 rounded bg-indigo-600 text-white hover:bg-indigo-700 transition">
-    Toggle Dark Mode
-  </button> --}}
-    <span class="inline-flex items-center gap-1 text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1.5 rounded-full">
-    <!-- User Icon (Heroicon) -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9.978 9.978 0 0112 15c2.21 0 4.243.714 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 shadow-md px-6 py-4 flex justify-between items-center">
+  <!-- Brand -->
+  <div class="text-xl font-bold text-indigo-700 dark:text-indigo-300 tracking-wide">
+    My Blog
+  </div>
+
+  <!-- User Info -->
+  <div class="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-700 px-3 py-1.5 rounded-full shadow-sm">
+    <!-- Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-indigo-600 dark:text-indigo-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5.121 17.804A9.978 9.978 0 0112 15c2.21 0 4.243.714 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
-    {{-- Welcome, {{ Auth::user()->name }} --}}
-    {{--  --}}
-    @if (Auth::check())
-    {{ auth()->user()->name ?? 'Guest' }}
-    @endif
-</span>
+
+    <!-- Welcome Text -->
+    <span class="text-sm text-gray-800 dark:text-gray-200 font-medium">
+      @auth
+        {{ auth()->user()->name }}
+      @else
+        Guest
+      @endauth
+    </span>
+  </div>
+
 </nav>
 
 <!-- Mobile Backdrop -->

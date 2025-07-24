@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
-
 <div class="container-fluid py-4 fade-in">
 
     <div class="row mb-4">
@@ -21,7 +20,7 @@
                         <div>
                             <h1 class="dashboard-title mb-1">
                                 <i class="fas fa-map-marker-alt text-primary me-2"></i>
-                                <a href="https://dpsmap.com/" target="_blank">DPSMAP</a>'s POI Admin
+                                <a href="https://dpsmap.com/" target="_blank">Directory</a>'s POI Admin
                             </h1>
                             <p class="text-muted mb-md-0">Manage your points of interest database</p>
                         </div>
@@ -130,17 +129,17 @@ document.getElementById('logout-form').submit();">
                                         </a>
                                     </td>
                                     <td>{{ $poi->verify_dat }}</td>
-                                    <td>
-                                        @if (isset($poi->verify_status) && $poi->verify_status == 'verified')
-                                        <span class="badge badge-success">
-                                            <i class="fas fa-check-circle me-1"></i>Verified
-                                        </span>
-                                        @else
-                                        <span class="badge badge-warning text-dark">
-                                            <i class="fas fa-clock me-1"></i>Pending
-                                        </span>
-                                        @endif
-                                    </td>
+                                        <td>
+                                            @if ($poi->verify_dat)
+                                                <span class="badge badge-primary text-dark">
+                                                    <i class="fas fa-check-circle me-1"></i>Verified
+                                                </span>
+                                            @else
+                                                <span class="badge badge-warning text-dark">
+                                                    <i class="fas fa-clock me-1"></i>Pending
+                                                </span>
+                                            @endif
+                                        </td>
                                     <td>
                                         <div class="action-buttons">
                                             <a href="{{ route('admin.edit', $poi->id) }}"
@@ -334,41 +333,45 @@ document.getElementById('logout-form').submit();">
                 </div>
             </div>
 
-            <!-- Quick Stats Card (visible when form is collapsed) -->
-            <div class="card mb-3" id="statsCard">
-                <div class="card-header">
-                    <h5 class="mb-0"><i class="fas fa-chart-pie me-2 text-primary"></i>Quick Stats</h5>
+    <!-- Quick Stats Card -->
+   <div class="mx-auto " style="max-width: 600px;">
+    <div class="card mb-3" id="statsCard">
+        <div class="card-header">
+            <h5 class="mb-0">
+                <i class="fas fa-chart-pie me-2 text-primary"></i>Quick Stats
+            </h5>
+        </div>
+        <div class="card-body">
+            <div class="d-flex align-items-center mb-3">
+                <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-map-marker-alt text-primary"></i>
                 </div>
-                <div class="card-body">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3">
-                            <i class="fas fa-map-marker-alt text-primary"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-0">Total POIs</h6>
-                            <h3 class="mb-0">{{ count($pois) }}</h3>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
-                            <i class="fas fa-check-circle text-success"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-0">Verified</h6>
-                            <h3 class="mb-0">{{ $pois->where('verify_status', 'verified')->count() }}</h3>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
-                            <i class="fas fa-clock text-warning"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-0">Pending</h6>
-                            <h3 class="mb-0">{{ $pois->where('verify_status', 'not_verified')->count() }}</h3>
-                        </div>
-                    </div>
+                <div>
+                    <h6 class="mb-0">Total POIs</h6>
+                    <h3 class="mb-0">{{ count($pois) }}</h3>
                 </div>
             </div>
+            <div class="d-flex align-items-center mb-3">
+                <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-check-circle text-success"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0">Verified</h6>
+                    <h3 class="mb-0">{{ $pois->where('verify_dat', !null)->count() }}</h3>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
+                    <i class="fas fa-clock text-warning"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0">Pending</h6>
+                    <h3 class="mb-0">{{ $pois->where('verify_dat', 'NULL')->count() }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
             <!-- Recent Activity Card -->
             <div class="card">
