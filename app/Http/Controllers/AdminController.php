@@ -26,7 +26,7 @@ class AdminController extends Controller
         });
         return view('admin.home', compact('pois'));
     }
-    
+
     public function testing()
     {
         dd('hello');
@@ -75,17 +75,20 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+    //     $poi = POI::findOrFail($id);
+    // return view('admin.edit', compact('poi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+    //       $poi = POI::findOrFail($id);
+    // $poi->update($request->all());
+    // return redirect()->route('admin.index')->with('success', 'POI updated successfully');
     }
 
     /**
@@ -93,7 +96,7 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-       
+
         $poi = Poi::findOrfail($id);
         //dd($poi);
         if ($poi->delete()) {

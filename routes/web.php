@@ -41,6 +41,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin', 'verified']
         ->names('admin');
     // Route::get('/dataTable', [AdminController::class, 'dataTable'])->name('admin.dataTable');
     Route::delete('/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
+Route::get('/admin/{id}/edit', [PlaceController::class, 'edit'])->name('admin.edit');
+Route::put('/admin/{id}', [PlaceController::class, 'update'])->name('admin.update');
     Route::post('/import', [AdminController::class, 'import'])->name('admin.import');
     // Route::post('/testing', [AdminController::class, 'testing'])->name('admin.test');
 });
@@ -89,7 +91,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/blog', [BlogController::class, 'store'])->name('blog.store');
 });
 Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit');
-Route::put('/blog/{post}', [BlogController::class, 'update'])->name('blog.update');
 Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->middleware('auth');
 
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');

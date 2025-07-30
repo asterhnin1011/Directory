@@ -77,7 +77,7 @@ document.getElementById('logout-form').submit();">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Points of Interest</h5>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-outline-secondary" id="refreshTable" disabled>
+                        <button class="btn btn-sm btn-outline-secondary" id="refreshTable">
                             <i class="fas fa-sync-alt me-1"></i> Refresh
                         </button>
                     </div>
@@ -88,7 +88,8 @@ document.getElementById('logout-form').submit();">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>POI Name</th>
+                                    <th>POI_Name_Eng</th>
+                                    <th>POI_Name_Myn</th>
                                     <th>Type</th>
                                     <th>Address</th>
                                     <th>Phone</th>
@@ -103,7 +104,10 @@ document.getElementById('logout-form').submit();">
                                 <tr>
                                     <td>{{ $poi->id }}</td>
                                     <td>
-                                        <div class="fw-medium">{{ $poi->poi_n_eng }}</div>
+                                        {{ $poi->poi_n_eng }}
+                                    </td>
+                                    <td>
+                                        {{ $poi->poi_n_myn3 }}
                                     </td>
                                     <td>
                                         <span class="badge bg-light text-dark">{{ $poi->type }}</span>
@@ -183,10 +187,16 @@ document.getElementById('logout-form').submit();">
                                 <input type="number" class="form-control" id="fid" name="fid" placeholder="Enter FID">
                             </div>
                             <div class="mb-3">
-                                <label for="poi_n_eng" class="form-label">POI Name <span
+                                <label for="poi_n_eng" class="form-label">Poi_N_Eng <span
                                         class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="poi_n_eng" name="poi_n_eng" required
-                                    placeholder="Enter POI name">
+                                    placeholder="Enter POI name English">
+                            </div>
+                            <div class="mb-3">
+                                <label for="poi_n_myn3" class="form-label">Poi_N_Myn <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="poi_n_myn3" name="poi_n_myn3" required
+                                    placeholder="Enter POI name Myanmar">
                             </div>
                             <div class="mb-3">
                                 <label for="type" class="form-label">Type <span class="text-danger">*</span></label>
@@ -194,8 +204,9 @@ document.getElementById('logout-form').submit();">
                                     <option value="">Select type</option>
                                     <option value="Restaurant">Restaurant</option>
                                     <option value="Hotel">Hotel</option>
-                                    <option value="Shop">Shop</option>
-                                    <option value="Landmark">Landmark</option>
+                                    <option value="Hospital">Hospital</option>
+                                    <option value="School">School</option>
+                                    <option value="Religious building">Religious building</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>
@@ -686,16 +697,17 @@ $(document).ready(function() {
     });
 
     // Refresh button functionality
-    $('#refreshTable').on('click', function() {
-        // Add a spinning animation to the refresh icon
-        $(this).find('i').addClass('fa-spin');
+   $('#refreshTable').on('click', function () {
+    const $btn = $(this);
+    const $icon = $btn.find('i');
 
-        // Simulate a refresh (in a real app, you might reload data from the server)
-        setTimeout(function() {
-            table.ajax.reload(null, false);
-            $('#refreshTable').find('i').removeClass('fa-spin');
-        }, 1000);
-    });
+    $icon.addClass('fa-spin'); // Start spinning icon
+
+    setTimeout(function () {
+        table.ajax.reload(null, false); // false = stay on current page
+        $icon.removeClass('fa-spin'); // Stop spinning icon
+    }, 1000); // Simulate a 1 second delay for the refresh
+});
 
     // View details modal functionality
     $('.view-details').on('click', function() {
