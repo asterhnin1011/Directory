@@ -139,15 +139,15 @@
                                             <ul id="navigation">
                                                 <li><a href="/">Home</a></li>
                                                 <li><a href="{{ route('about') }}">About</a></li>
-                                                <li><a href="catagori.html">How It Work</a></li>
+                                                <li><a href="#work">How It Work</a></li>
                                                 {{-- <li><a href="listing.html">Listing</a></li> --}}
                                                 <li><a href="#">Page</a>
                                                     <ul class="submenu">
                                                         <li><a href="{{ route('blog.index') }}">Blog</a></li>
-                                                        <li><a href="blog_details.html">Blog Details</a></li>
+                                                        <li><a href="#places">Popular Places</a></li>
                                                     </ul>
                                                 </li>
-                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="#contact">Contact</a></li>
                                                 {{-- <li class="add-list">
                                                     <a href="listing_details.html"><i class="ti-plus"></i> add Listing</a>
                                                 </li> --}}
