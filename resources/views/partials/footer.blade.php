@@ -1,88 +1,91 @@
 <footer>
-        <!-- Footer Start-->
-        <div class="footer-area">
-            <div class="container">
-               <div class="footer-top footer-padding">
-                    <div class="row justify-content-between">
-                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="single-footer-caption mb-30">
-                                    <!-- logo -->
-                                    <div class="footer-logo">
-                                        <a href="index.html"><img src="public\assets\img\logo\directorylogo.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Quick Link</h4>
-                                    <ul>
-                                        <li><a href="#">Home</a></li>
-                                        <li><a href="#">Listing</a></li>
-                                        <li><a href="#">About</a></li>
-                                        <li><a href="#">Contact</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Categories</h4>
-                                    <ul>
-                                        <li><a href="#">Reasonable Hotel</a></li>
-                                        <li><a href="#">Popular Restaurant</a></li>
-                                        <li><a href="#">Easy Shopping</a></li>
-                                        <li><a href="#">Night Life</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-footer-caption mb-50">
-                                <div class="footer-tittle">
-                                    <h4>Download App</h4>
-                                    <ul>
-                                        <li class="app-log"><a href="#"><img src="assets/img/gallery/app-logo.png" alt=""></a></li>
-                                        <li><a href="#"><img src="assets/img/gallery/app-logo2.png" alt=""></a></li>
-                                    </ul>
-                                </div>
+    <!-- Footer Start -->
+    <div class="footer-area" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="container">
+            <div class="footer-top" style="padding-top: 10px; padding-bottom: 10px;">
+                <div class="row justify-content-between">
+                    <!-- Logo -->
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-3">
+                            <div class="footer-logo">
+                                <a href="index.html">
+                                    <img src="assets/img/logo/logo2_footer.png" alt="" style="max-width: 140px;">
+                                </a>
                             </div>
                         </div>
                     </div>
-               </div>
-                <div class="footer-bottom">
-                    <div class="row d-flex justify-content-between align-items-center">
-                        <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-4">
-                            <!-- Footer Social -->
-                            <div class="footer-social f-right">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fas fa-globe"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
+                    <!-- Quick Links -->
+                    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-3">
+                            <div class="footer-tittle">
+                                <h5 style="font-size: 16px; color: rgb(18, 17, 17)">Quick Link</h5>
+                                <ul class="list-unstyled small">
+                                    <li><a href="#" style="color: #000000;">Home</a></li>
+                                    <li><a href="#" style="color: #000000;">Listing</a></li>
+                                    <li><a href="#" style="color: #000000;">About</a></li>
+                                    <li><a href="#" style="color: #000000;">Contact</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-               </div>
+                    <!-- Categories -->
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-3">
+                            <div class="footer-tittle">
+                                <h5 style="font-size: 16px; color:rgb(18, 17, 17)">Categories</h5>
+                                <ul class="list-unstyled small">
+  <li><a href="#" style="color: #000000;">Reasonable Hotel</a></li>
+  <li><a href="#" style="color: #000000;">Popular Restaurant</a></li>
+  <li><a href="#" style="color: #000000;">Easy Shopping</a></li>
+  <li><a href="#" style="color: #000000;">Night Life</a></li>
+</ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- App Download -->
+                    {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                        <div class="single-footer-caption mb-3">
+                            <div class="footer-tittle">
+                                <h5 style="font-size: 16px;">Download App</h5>
+                                <div class="d-flex gap-2">
+                                    <a href="#"><img src="assets/img/gallery/app-logo.png" alt="" style="height: 35px;"></a>
+                                    <a href="#"><img src="assets/img/gallery/app-logo2.png" alt="" style="height: 35px;"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom" style="padding-top: 10px; padding-bottom: 10px;">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="footer-copy-right small text-muted">
+                            <p class="mb-0"  style="color: #000000;">
+                                &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved |
+                                by <a href="https://www.dpsmap.com/" class="text-decoration-none">DPS</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 text-end">
+                        <!-- Footer Social -->
+                        <div class="footer-social">
+                            <a href="#" class="text-muted me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="text-muted me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-muted me-2"><i class="fas fa-globe"></i></a>
+                            <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- Footer End-->
-    </footer>
-     <!-- Scroll Up -->
-    <div id="back-top" >
-        <a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a>
     </div>
 
-
+    <!-- Scroll Up -->
+    <div id="back-top">
+        <a title="Go to Top" href="#"><i class="fas fa-level-up-alt"></i></a>
+    </div>
     <!-- JS here -->
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
@@ -117,26 +120,4 @@
         <script src="./assets/js/main.js"></script>
         @stack('js')
           <!-- Place this script at the end of your body -->
-<script>
-    const toggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Set default icon
-    if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        toggle.textContent = '☀️';
-    }
-
-    toggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('theme', 'dark');
-            toggle.textContent = '☀️';
-        } else {
-            localStorage.setItem('theme', 'light');
-            toggle.textContent = '🌙';
-        }
-    });
-</script>
-    </body>
-</html>
+</footer>
