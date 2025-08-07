@@ -95,7 +95,7 @@
         <option value="School" {{ old('type', $poi->type ?? '') == 'School' ? 'selected' : '' }}>School</option>
         <option value="Hotel" {{ old('type', $poi->type ?? '') == 'Hotel' ? 'selected' : '' }}>Hotel</option>
         <option value="Market" {{ old('type', $poi->type ?? '') == 'Market' ? 'selected' : '' }}>Market</option>
-        <option value="Other" {{ old('type', $poi->type ?? '') == 'Other' ? 'selected' : '' }}>Other</option>
+        <option value="Other" {{ old('type', $poi->type ?? '') == 'Other' ? 'selected' : '' }}>Gas</option>
     </select>
 </div>
 

@@ -21,7 +21,7 @@
                                 <h5 style="font-size: 16px; color: rgb(18, 17, 17)">Quick Link</h5>
                                 <ul class="list-unstyled small">
                                     <li><a href="#" style="color: #000000;">Home</a></li>
-                                    <li><a href="#" style="color: #000000;">Listing</a></li>
+                                    <li><a href="#" style="color: #000000;">Blog</a></li>
                                     <li><a href="#" style="color: #000000;">About</a></li>
                                     <li><a href="#" style="color: #000000;">Contact</a></li>
                                 </ul>
@@ -34,26 +34,15 @@
                             <div class="footer-tittle">
                                 <h5 style="font-size: 16px; color:rgb(18, 17, 17)">Categories</h5>
                                 <ul class="list-unstyled small">
-  <li><a href="#" style="color: #000000;">Reasonable Hotel</a></li>
-  <li><a href="#" style="color: #000000;">Popular Restaurant</a></li>
-  <li><a href="#" style="color: #000000;">Easy Shopping</a></li>
-  <li><a href="#" style="color: #000000;">Night Life</a></li>
+  <li><a href="#" style="color: #000000;">Religious Building</a></li>
+  <li><a href="#" style="color: #000000;">Hospital</a></li>
+  <li><a href="#" style="color: #000000;">Restaurant</a></li>
+  <li><a href="#" style="color: #000000;">Hotel</a></li>
+  <li><a href="#" style="color: #000000;">Other</a></li>
 </ul>
                             </div>
                         </div>
                     </div>
-                    <!-- App Download -->
-                    {{-- <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                        <div class="single-footer-caption mb-3">
-                            <div class="footer-tittle">
-                                <h5 style="font-size: 16px;">Download App</h5>
-                                <div class="d-flex gap-2">
-                                    <a href="#"><img src="assets/img/gallery/app-logo.png" alt="" style="height: 35px;"></a>
-                                    <a href="#"><img src="assets/img/gallery/app-logo2.png" alt="" style="height: 35px;"></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
 
@@ -72,9 +61,9 @@
                         <!-- Footer Social -->
                         <div class="footer-social">
                             <a href="#" class="text-muted me-2"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" class="text-muted me-2"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-muted me-2"><i class="fas fa-globe"></i></a>
-                            <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a>
+                            {{-- <a href="#" class="text-muted me-2"><i class="fab fa-twitter"></i></a> --}}
+                            <a href="https://www.dpsmap.com/" class="text-muted me-2"><i class="fas fa-globe"></i></a>
+                            {{-- <a href="#" class="text-muted"><i class="fab fa-instagram"></i></a> --}}
                         </div>
                     </div>
                 </div>

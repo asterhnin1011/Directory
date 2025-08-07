@@ -45,8 +45,8 @@
   <aside class="w-64 hidden sm:block h-screen sticky top-20 p-4 bg-white dark:bg-gray-800 shadow-md">
     <nav class="space-y-4">
       <a href="{{ route('blog.index') }}" class="block px-4 py-2 rounded hover:bg-indigo-100 dark:hover:bg-gray-700">All Posts</a>
-      <a href="#" class="block px-4 py-2 rounded hover:bg-indigo-100 dark:hover:bg-gray-700">Profile</a>
-      <a href="#" class="block px-4 py-2 rounded hover:bg-indigo-100 dark:hover:bg-gray-700">Settings</a>
+      <a href="{{ route('blog.create') }}" class="block px-4 py-2 rounded hover:bg-indigo-100 dark:hover:bg-gray-700">Add Post</a>
+      <a href="{{ route('profile.edit') }}" class="block px-4 py-2 rounded hover:bg-indigo-100 dark:hover:bg-gray-700">Profile</a>
     </nav>
   </aside>
 

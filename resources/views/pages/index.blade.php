@@ -28,6 +28,7 @@
                 <option value="Hospital">Hospital</option>
                 <option value="Restaurant">Restaurant</option>
                 <option value="Hotel">Hotel</option>
+                <option value="Gas">Gas</option>
             </select>
         </div>
     </div>

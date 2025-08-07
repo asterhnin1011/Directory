@@ -68,8 +68,10 @@ public function edit($id)
 
 public function destroy(Post $post)
 {
-    // Remove this line temporarily
-    // $this->authorize('delete', $post);
+    if (auth()->user()->isAdmin()) {
+        $post->delete();
+        return redirect()->route('blog.index')->with('success', 'Post deleted.');
+    }
 
     if (auth()->id() !== $post->user_id) {
         abort(403);

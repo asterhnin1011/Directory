@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -43,6 +44,8 @@ class RegisterController extends Controller
         'password' => Hash::make($request->password),
     ]);
 
+    event(new Registered($user));
+    
     Auth::login($user);
 
     // Flash success message

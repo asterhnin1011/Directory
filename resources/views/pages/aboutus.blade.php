@@ -14,7 +14,7 @@
         <div class="container mx-auto px-4 py-6 flex justify-between items-center">
             <h1 class="text-2xl font-bold">Directory</h1>
             <nav class="space-x-4">
-                <a href="{{ url()->previous() }}" class="btn btn-light mt-3 rounded-pill px-4 text-primary">← Back</a>
+                <a href="/" class="btn btn-light mt-3 rounded-pill px-4 text-primary">← Back</a>
             </nav>
         </div>
     </header>

@@ -20,7 +20,7 @@ class AdminController extends Controller
     {
         $pois = Cache::remember('pois_all', 300, function () {
             // dd('$pois');
-            return Poi::select('id', 'poi_n_eng', 'type', 'address', 'phone', 'longitude', 'latitude', 'remark', 'verify_dat', 'poi_pictur', 'postal_cod')
+            return Poi::select('id', 'poi_n_eng', 'poi_n_myn3', 'type', 'address', 'phone', 'longitude', 'latitude', 'remark', 'verify_dat', 'poi_pictur', 'postal_cod')
                 ->latest()
                 ->get();
         });
@@ -114,7 +114,7 @@ class AdminController extends Controller
         ]);
 
         try {
-            Excel::import(new PoisImport, $request->file('file'));
+            // Excel::import(new PoisImport, $request->file('file'));
         } catch (\Exception $e) {
             Log::error('Import failed: ' . $e->getMessage());
             return back()->with('error', 'Import failed. Please check logs.');

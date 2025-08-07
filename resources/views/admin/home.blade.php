@@ -207,7 +207,7 @@ document.getElementById('logout-form').submit();">
                                     <option value="Hospital">Hospital</option>
                                     <option value="School">School</option>
                                     <option value="Religious building">Religious building</option>
-                                    <option value="Other">Other</option>
+                                    <option value="Gas">Gas</option>
                                 </select>
                             </div>
                             <div class="mb-3">

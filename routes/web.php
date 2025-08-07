@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +93,7 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/blog/{post}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 Route::delete('/blog/{post}', [BlogController::class, 'destroy'])->name('blog.destroy')->middleware('auth');
-
+Route::delete('/blog/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
 Route::get('/blog/{id}', [BlogController::class, 'show'])->name('blog.show');
 // Route::get('auth/google', [GoogleController::class, 'redirect'])->name('google.redirect');
 // Route::get('auth/google/callback', [GoogleController::class, 'callback']);
@@ -120,6 +121,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('status', 'verification-link-sent');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 // Route::get('/blog', function () {
 //     return view('blog.index');
 // })->middleware(['auth', 'verified'])->name('blog.index');
