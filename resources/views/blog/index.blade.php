@@ -9,81 +9,106 @@
 </head>
 <body class=" from-gray-100 to-white min-h-screen text-gray-800"  style="background-color:#f0f8ff">
 
-    <!-- Navbar -->
-   <nav class="bg-white bg-opacity-80 backdrop-blur-md shadow-md sticky top-0 z-50">
+   <!-- Navbar -->
+<nav class="bg-white bg-opacity-80 backdrop-blur-md shadow-md sticky top-0 z-50">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Logo -->
         <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">My Blog</a>
 
-        <div class="space-x-4 flex items-center">
-            <a href="/"
-   class="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
-  <!-- Home Icon -->
-  <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
-       viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path stroke-linecap="round" stroke-linejoin="round"
-          d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 01-1.5 1.5h-4.5v-6h-6v6H4.5A1.5 1.5 0 013 21V9.75z" />
-  </svg>
-  Home
-</a>
-  @auth
-        <a href="{{ route('blog.create') }}" class="inline-flex items-center gap-2 bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md shadow hover:bg-indigo-700 transition">
-    <!-- Heroicon: Plus -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-    </svg>
-    Create Post
-</a>
-                <span class="inline-flex items-center gap-1 text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1.5 rounded-full">
-    <!-- User Icon (Heroicon) -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A9.978 9.978 0 0112 15c2.21 0 4.243.714 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-    Welcome, {{ Auth::user()->name }}
-</span>
-               <form method="POST" action="{{ route('logout') }}" class="inline">
-    @csrf
-    <button type="submit" class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1.5 rounded-md hover:bg-red-100 hover:text-red-600 transition">
-        <!-- Heroicon: Logout -->
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m4-8V7a2 2 0 00-4 0v1" />
-        </svg>
-        Logout
-    </button>
+        <!-- Hamburger Button (Mobile) -->
+        <button id="menu-toggle" class="md:hidden text-gray-600 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
 
-</form>
+        <!-- Navigation Links -->
+        <div id="nav-links" class="hidden md:flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0 mt-4 md:mt-0 w-full md:w-auto">
+            <!-- Home -->
+            <a href="/"
+               class="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+                <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 01-1.5 1.5h-4.5v-6h-6v6H4.5A1.5 1.5 0 013 21V9.75z" />
+                </svg>
+                Home
+            </a>
+
+            @auth
+            <!-- Create Post -->
+            <a href="{{ route('blog.create') }}"
+               class="inline-flex items-center gap-2 bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md shadow hover:bg-indigo-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 4v16m8-8H4" />
+                </svg>
+                Create Post
+            </a>
+
+            <!-- Welcome User -->
+            <span
+                class="inline-flex items-center gap-1 text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1.5 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-600" fill="none"
+                     viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5.121 17.804A9.978 9.978 0 0112 15c2.21 0 4.243.714 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Welcome, {{ Auth::user()->name }}
+            </span>
+
+            <!-- Logout -->
+            <form method="POST" action="{{ route('logout') }}" class="inline">
+                @csrf
+                <button type="submit"
+                        class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1.5 rounded-md hover:bg-red-100 hover:text-red-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
+                         viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m4-8V7a2 2 0 00-4 0v1" />
+                    </svg>
+                    Logout
+                </button>
+            </form>
 
             @else
-               <div class="flex items-center gap-4">
-  <!-- Login Link -->
-  <a href="{{ route('login') }}"
-     class="inline-flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm font-medium">
-    <!-- Login Icon -->
-    <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
-         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M15 12H3m6-6l-6 6 6 6M21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v14a2 2 0 002 2h4a2 2 0 002-2V5z" />
-    </svg>
-    Login
-  </a>
+            <!-- Login -->
+            <a href="{{ route('login') }}"
+               class="inline-flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm font-medium">
+                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15 12H3m6-6l-6 6 6 6M21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v14a2 2 0 002 2h4a2 2 0 002-2V5z" />
+                </svg>
+                Login
+            </a>
 
-  <!-- Register Button -->
-  <a href="{{ route('register') }}"
-     class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-md shadow transition">
-    <!-- Register Icon -->
-    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
-         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round"
-            d="M16 21v-2a4 4 0 00-3.6-3.98M12 7a4 4 0 100 8 4 4 0 000-8zM6 21v-2a4 4 0 013-3.87" />
-    </svg>
-    Register
-  </a>
-</div>
+            <!-- Register -->
+            <a href="{{ route('register') }}"
+               class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-md shadow transition">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
+                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M16 21v-2a4 4 0 00-3.6-3.98M12 7a4 4 0 100 8 4 4 0 000-8zM6 21v-2a4 4 0 013-3.87" />
+                </svg>
+                Register
+            </a>
             @endauth
         </div>
-
     </div>
-
 </nav>
+
+<!-- Mobile Menu Toggle Script -->
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+        const navLinks = document.getElementById('nav-links');
+        navLinks.classList.toggle('hidden');
+    });
+</script>
+
 
 <!-- Blog Section -->
 <div class="container mx-auto px-4 py-12">

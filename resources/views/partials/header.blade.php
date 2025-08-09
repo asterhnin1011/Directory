@@ -28,72 +28,56 @@
             <link rel="stylesheet" href="assets/css/style.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-    body.dark-mode {
-        background-color: #121212;
-        color: #f1f1f1;
-    }
-    .dark-mode .header-area,
-    .dark-mode .footer-area {
-        background-color: #1e1e1e !important;
-    }
-    .dark-mode a {
-        color: #ddd;
-    }
-    .dark-mode .single-location,
-    .dark-mode .single-cat,
-    .dark-mode .single-services,
-    .dark-mode .single-testimonial,
-    .dark-mode .single-team {
-        background-color: #2c2c2c;
-    }
-
-.slider-height {
-        height: 100vh; /* Full screen height */
-        min-height: 700px; /* Minimum height on small screens */
-    }
-
-    @media (max-width: 768px) {
-        .slider-height {
-            height: auto;
-            padding: 100px 0;
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
         }
-    }
-    .hero-bottom-space {
-    padding-bottom: 120px; /* or any height you want */
-}
-/* .header-area{
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background 0.3s ease-in-out;
-} */
-.header-sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 15px rgba(25,25,25,0.1);
-  animation: fadeInDown 300ms ease-in-out;
-}
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -20%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
 
-</style>
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(251, 246, 213, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link:focus {
+            color: #007bff;
+        }
+
+        .dropdown-menu {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-login {
+            border-left: 1px solid #ccc;
+            margin-left: 1rem;
+            padding-left: 1rem;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 991px) {
+            .nav-login {
+                border-left: none;
+                margin-left: 0;
+                padding-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
 
             @stack('css')
    </head>
@@ -111,70 +95,57 @@
         </div>
     </div>
     <!-- Preloader end -->
- <!-- Header Content -->
-    <div style="position: relative; z-index: 2;">
-        <!-- Header Start -->
-        <header>
-           <div class="header-area header-transparent" style="border-radius: 0 0 12px 12px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.2);">
-             <div class="main-header">
-      <div class="header-bottom header-sticky">
-                        {{-- <div class="container-fluid"> --}}
-                            <div class="row align-items-center">
-                                <!-- Logo -->
-                                <div class="col-xl-2 col-lg-2 col-md-1">
-                                    <div class="logo">
-                                        <a href="pages/index.html">
-                                            <img src="assets\img\logo\directorylogo.png" alt="Logo" width="100" height="auto">
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- Main Menu -->
-                                <div class="col-xl-10 col-lg-10 col-md-8">
-                                    <div class="main-menu f-right d-none d-lg-block">
-                                        <nav>
-                                            <ul id="navigation">
-                                                <li><a href="/">Home</a></li>
-                                                <li><a href="{{ route('about') }}">About</a></li>
-                                                <li><a href="#work">How It Work</a></li>
-                                                {{-- <li><a href="listing.html">Listing</a></li> --}}
-                                                <li><a href="#">Page</a>
-                                                    <ul class="submenu">
-                                                        <li><a href="{{ route('blog.index') }}">Blog</a></li>
-                                                        <li><a href="#places">Popular Places</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#contact">Contact</a></li>
-                                                {{-- <li class="add-list">
-                                                    <a href="listing_details.html"><i class="ti-plus"></i> add Listing</a>
-                                                </li> --}}
-                                                <li class="login">
-                                                    <a href="{{ route('login') }}">
-                                                        <i class="ti-user"></i> Sign in or Register
-                                                    </a>
-                                                </li>
-                                                {{-- <li>
-                                                    <button id="theme-toggle" class="border-0 bg-transparent text-white" style="font-size: 20px;">
-                                                        🌙
-                                                    </button>
-                                                </li> --}}
-                                            </ul>
-                                        </nav>
-                                    </div>
-                                </div>
-                                <!-- Mobile Menu -->
-                                <div class="col-12">
-                                    <div class="mobile_menu d-block d-lg-none"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+ <!-- Navbar Start -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ asset('assets/img/logo/directorylogo.png') }}" alt="Directory Logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about') }}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#work">How It Works</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Pages
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                                <li><a class="dropdown-item" href="{{ route('blog.index') }}">Blog</a></li>
+                                <li><a class="dropdown-item" href="#places">Popular Places</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+
+                        <li class="nav-item nav-login">
+                            <a class="nav-link" href="{{ route('login') }}">
+                                <i class="bi bi-person-circle"></i> Sign in or Register
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </header>
-        <!-- Header End -->
+        </nav>
+    </header>
+    <!-- Navbar End -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
 </div>
