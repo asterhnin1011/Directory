@@ -4,14 +4,14 @@
 <main>
 
         <!-- Hero Area Start-->
-        <div class="slider-area hero-overly">
-         <div class="single-slider hero-overly slider-height d-flex align-items-center hero-bottom-space">
+       <div class="slider-area hero-overly custom-hero">
+    <div class="single-slider hero-overly slider-height custom-hero-height d-flex align-items-center hero-bottom-space">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-8 col-lg-9">
                             <!-- Hero Caption -->
                             <div class="hero__caption">
-                                {{-- <span>Explore the city</span> --}}
+                                {{-- <span>Explore the Places</span> --}}
                                 <h1>Discover Great Places</h1>
                             </div>
                             <!--Hero form -->
