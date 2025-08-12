@@ -11,7 +11,7 @@
                         <div class="col-xl-8 col-lg-9">
                             <!-- Hero Caption -->
                             <div class="hero__caption">
-                                {{-- <span>Explore the Places</span> --}}
+                                <span>Myeik Directory</span>
                                 <h1>Discover Great Places</h1>
                             </div>
                             <!--Hero form -->

@@ -95,56 +95,62 @@
         </div>
     </div>
     <!-- Preloader end -->
- <!-- Navbar Start -->
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <img src="{{ asset('assets/img/logo/directorylogo.png') }}" alt="Directory Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-                    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<!-- Navbar Start -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f8f9fa;">
+        <div class="container">
+            <!-- Logo + Title -->
+            <a class="navbar-brand d-flex align-items-center" href="/">
+                <img src="{{ asset('assets/img/logo/directorylogo.png') }}" alt="Directory Logo" style="height: 40px;">
+                <span class="ms-2 fw-bold" style="font-size: 1.25rem; color: #333;">Myeik Directory</span>
+            </a>
 
-                <div class="collapse navbar-collapse" id="mainNavbar">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about') }}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#work">How It Works</a>
-                        </li>
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Pages
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
-                                <li><a class="dropdown-item" href="{{ route('blog.index') }}">Blog</a></li>
-                                <li><a class="dropdown-item" href="#places">Popular Places</a></li>
-                            </ul>
-                        </li>
+            <!-- Navbar Links -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('about') }}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#work">How It Works</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
-                        </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
+                            <li><a class="dropdown-item" href="{{ route('blog.index') }}">Blog</a></li>
+                            <li><a class="dropdown-item" href="#places">Popular Places</a></li>
+                        </ul>
+                    </li>
 
-                        <li class="nav-item nav-login">
-                            <a class="nav-link" href="{{ route('login') }}">
-                                <i class="bi bi-person-circle"></i> Sign in or Register
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+
+                    <li class="nav-item nav-login">
+                        <a class="nav-link" href="{{ route('login') }}">
+                            <i class="bi bi-person-circle"></i> Sign in or Register
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
-    <!-- Navbar End -->
+        </div>
+    </nav>
+</header>
+<!-- Navbar End -->
+
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </div>

@@ -17,14 +17,14 @@
     }
   </script>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen flex flex-col">
+<body class="flex flex-col min-h-screen text-gray-800 bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Floating Navbar -->
-  <nav class="bg-white dark:bg-gray-800 bg-opacity-90 backdrop-blur-md sticky top-0 shadow z-50">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+  <nav class="sticky top-0 z-50 bg-white shadow dark:bg-gray-800 bg-opacity-90 backdrop-blur-md">
+    <div class="container flex items-center justify-between px-4 py-4 mx-auto">
       <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">My Blog</a>
-      <div class="space-x-4 flex items-center">
-        <a href="{{ route('blog.index') }}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 transition">Home</a>
+      <div class="flex items-center space-x-4">
+        <a href="{{ route('blog.index') }}" class="text-gray-700 transition dark:text-gray-200 hover:text-indigo-600">Home</a>
 
         <span class="inline-flex items-center gap-1 text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1.5 rounded-full">
     <!-- User Icon (Heroicon) -->
@@ -42,60 +42,60 @@
   </nav>
 
   <!-- Main Content -->
-  <main class="container mx-auto px-4 sm:px-8 py-10 flex-grow">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md p-6 sm:p-10 max-w-3xl mx-auto">
-      <h1 class="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-6">Edit Post</h1>
+  <main class="container flex-grow px-4 py-10 mx-auto sm:px-8">
+    <div class="max-w-3xl p-6 mx-auto bg-white shadow-md dark:bg-gray-800 rounded-2xl sm:p-10">
+      <h1 class="mb-6 text-2xl font-bold text-indigo-600 sm:text-3xl dark:text-indigo-400">Edit Post</h1>
 
-      <form action="{{ route('blog.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('blog.edit', $post->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
         <!-- Title -->
         <div class="mb-6">
-          <label for="title" class="block font-semibold mb-2">Title</label>
+          <label for="title" class="block mb-2 font-semibold">Title</label>
           <input type="text" name="title" id="title" value="{{ old('title', $post->title) }}"
-                 class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">
+                 class="w-full px-4 py-2 border border-gray-300 rounded-md dark:border-gray-700 focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">
           @error('title')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
           @enderror
         </div>
 
         <!-- Body -->
         <div class="mb-6">
-          <label for="description" class="block font-semibold mb-2">description</label>
+          <label for="description" class="block mb-2 font-semibold">description</label>
           <textarea name="description" id="description" rows="6"
-                    class="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">{{ old('description', $post->description) }}</textarea>
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md dark:border-gray-700 focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">{{ old('description', $post->description) }}</textarea>
           @error('description')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
           @enderror
         </div>
 
         <!-- Image Upload -->
         <div class="mb-6">
-          <label for="image" class="block font-semibold mb-2">Change Image</label>
+          <label for="image" class="block mb-2 font-semibold">Change Image</label>
           <input type="file" name="image" id="image" accept="image/*"
-                 class="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-900"
+                 class="w-full px-3 py-2 border border-gray-300 rounded-md dark:border-gray-700 dark:bg-gray-900"
                  onchange="previewImage(event)">
           @error('image')
-            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+            <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
           @enderror
 
           @if ($post->image)
-            <p class="text-sm mt-2">Current Image:</p>
+            <p class="mt-2 text-sm">Current Image:</p>
             <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image"
-                 class="mt-2 w-40 h-auto rounded shadow border border-gray-300 dark:border-gray-600">
+                 class="w-40 h-auto mt-2 border border-gray-300 rounded shadow dark:border-gray-600">
           @endif
 
           <img id="imagePreview" src="#" alt="New Image Preview"
-               class="mt-4 w-40 h-auto hidden rounded-md shadow dark:border-gray-600" />
+               class="hidden w-40 h-auto mt-4 rounded-md shadow dark:border-gray-600" />
         </div>
 
         <!-- Submit -->
-        <div class="flex justify-between items-center">
+        <div class="flex items-center justify-between">
           <a href="{{ route('blog.index') }}"
-             class="text-sm text-gray-600 hover:text-indigo-600 dark:hover:text-indigo-400 underline">← Back to Posts</a>
+             class="text-sm text-gray-600 underline hover:text-indigo-600 dark:hover:text-indigo-400">← Back to Posts</a>
           <button type="submit"
-                  class="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition">Update Post</button>
+                  class="px-6 py-2 text-white transition bg-indigo-600 rounded-md hover:bg-indigo-700">Update Post</button>
         </div>
       </form>
     </div>

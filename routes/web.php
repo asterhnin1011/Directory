@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\GoogleController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\VerificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,4 +128,6 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 //     return view('blog.index');
 // })->middleware(['auth', 'verified'])->name('blog.index');
 
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
+    ->middleware(['signed'])->name('verification.verify');
 
