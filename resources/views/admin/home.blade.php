@@ -11,28 +11,33 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
 
-<div class="container-fluid py-4 fade-in">
+<div class="py-4 container-fluid fade-in">
 
-    <div class="row mb-4">
+    <div class="mb-4 row">
         <div class="col-12">
             <div class="card dashboard-header">
                 <div class="card-body">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                         <div>
-                            <h1 class="dashboard-title mb-1">
+                            <h1 class="mb-1 dashboard-title">
                                 <i class="fas fa-map-marker-alt text-primary me-2"></i>
                                 <a href="https://dpsmap.com/" target="_blank">Directory</a>'s POI Admin
                             </h1>
                             <p class="text-muted mb-md-0">Manage your points of interest database</p>
                         </div>
-                        <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
+                        <div class="flex-wrap gap-2 mt-3 d-flex mt-md-0">
                             <div class="me-5">
-                                
+
  <a href="{{ route('admin.users.index') }}">
-        <button class="btn btn-info mt-2 mt-md-0">
+        <button class="mt-2 btn btn-info mt-md-0">
             <i class="fas fa-users me-2"></i>View Users
         </button>
     </a>
+<a href="{{ route('admin.blogs.index') }}">
+    <button class="mt-2 btn btn-primary mt-md-0">
+        <i class="fas fa-file-alt me-2"></i>View Posts
+    </button>
+</a>
                                 <button class="btn btn-primary" data-bs-toggle="collapse"
                                     data-bs-target="#multiCollapseExample1">
                                     <i class="fas fa-plus-circle me-2"></i>Create POI
@@ -55,7 +60,7 @@ document.getElementById('logout-form').submit();">
                         </div>
                     </div>
 
-                    <div class="collapse mt-4" id="importCollapse">
+                    <div class="mt-4 collapse" id="importCollapse">
                         <div class="import-form">
                             <form action="" method="POST" enctype="multipart/form-data">
                                 @csrf
@@ -83,7 +88,7 @@ document.getElementById('logout-form').submit();">
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Points of Interest</h5>
-                    <div class="d-flex gap-2">
+                    <div class="gap-2 d-flex">
                         <button class="btn btn-sm btn-outline-secondary" id="refreshTable">
                             <i class="fas fa-sync-alt me-1"></i> Refresh
                         </button>
@@ -180,7 +185,7 @@ document.getElementById('logout-form').submit();">
             </div>
         </div>
 
-        <div class="col-12 col-lg-3 mt-3 mt-lg-0">
+        <div class="mt-3 col-12 col-lg-3 mt-lg-0">
             <div class="collapse multi-collapse" id="multiCollapseExample1">
                 <div class="card">
                     <div class="card-header">
@@ -230,7 +235,7 @@ document.getElementById('logout-form').submit();">
                                     placeholder="Enter phone number">
                             </div>
 
-                            <div class="accordion mb-4" id="additionalFieldsAccordion">
+                            <div class="mb-4 accordion" id="additionalFieldsAccordion">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button"
@@ -338,7 +343,7 @@ document.getElementById('logout-form').submit();">
                             <input type="hidden" name="created_by" value="1">
                             <input type="hidden" name="user_id" value="1">
 
-                            <div class="d-grid gap-2">
+                            <div class="gap-2 d-grid">
                                 <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-save me-2"></i>Create POI
                                 </button>
@@ -354,15 +359,15 @@ document.getElementById('logout-form').submit();">
 
     <!-- Quick Stats Card -->
    <div class="mx-auto " style="max-width: 600px;">
-    <div class="card mb-3" id="statsCard">
+    <div class="mb-3 card" id="statsCard">
         <div class="card-header">
             <h5 class="mb-0">
                 <i class="fas fa-chart-pie me-2 text-primary"></i>Quick Stats
             </h5>
         </div>
         <div class="card-body">
-            <div class="d-flex align-items-center mb-3">
-                <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3">
+            <div class="mb-3 d-flex align-items-center">
+                <div class="p-3 rounded-circle bg-success bg-opacity-10 me-3">
                     <i class="fas fa-map-marker-alt text-primary"></i>
                 </div>
                 <div>
@@ -370,24 +375,45 @@ document.getElementById('logout-form').submit();">
                     <h3 class="mb-0">{{ count($pois) }}</h3>
                 </div>
             </div>
-            <div class="d-flex align-items-center mb-3">
-                <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
+
+            <div class="mb-3 d-flex align-items-center">
+    <div class="p-3 rounded-circle bg-success bg-opacity-10 me-3">
+        <i class="fas fa-newspaper text-success"></i>
+    </div>
+    <div>
+        <h6 class="mb-0">Total Posts</h6>
+        <h3 class="mb-0">{{ $posts->count() }}</h3>
+    </div>
+</div>
+
+
+<div class="mb-3 d-flex align-items-center">
+    <div class="p-3 rounded-circle bg-primary bg-opacity-10 me-3">
+        <i class="fas fa-users text-primary"></i>
+    </div>
+    <div>
+        <h6 class="mb-0">Total Users</h6>
+        <h3 class="mb-0">{{ $totalUsers }}</h3>
+    </div>
+</div>
+            {{-- <div class="mb-3 d-flex align-items-center">
+                <div class="p-3 rounded-circle bg-success bg-opacity-10 me-3">
                     <i class="fas fa-check-circle text-success"></i>
                 </div>
                 <div>
                     <h6 class="mb-0">Verified</h6>
                     <h3 class="mb-0">{{ $pois->where('verify_dat', !null)->count() }}</h3>
                 </div>
-            </div>
-            <div class="d-flex align-items-center">
-                <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
+            </div> --}}
+            {{-- <div class="d-flex align-items-center">
+                <div class="p-3 rounded-circle bg-warning bg-opacity-10 me-3">
                     <i class="fas fa-clock text-warning"></i>
                 </div>
                 <div>
                     <h6 class="mb-0">Pending</h6>
                     <h3 class="mb-0">{{ $pois->where('verify_dat', 'NULL')->count() }}</h3>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
@@ -397,7 +423,7 @@ document.getElementById('logout-form').submit();">
                 <div class="card-header">
                     <h5 class="mb-0"><i class="fas fa-history me-2 text-primary"></i>Recent Activity</h5>
                 </div>
-                <div class="card-body p-0">
+                <div class="p-0 card-body">
                     <ul class="list-group list-group-flush">
                         @foreach ($pois->sortByDesc('id')->take(5) as $recentPoi)
                         <li class="list-group-item">
@@ -412,9 +438,9 @@ document.getElementById('logout-form').submit();">
                         @endforeach
                     </ul>
                 </div>
-                <div class="card-footer text-center">
+                {{-- <div class="text-center card-footer">
                     <a href="#" class="text-primary text-decoration-none">View All Activity</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -473,14 +499,14 @@ document.getElementById('logout-form').submit();">
                         </table>
                     </div>
                 </div>
-                <div class="row mt-3">
+                <div class="mt-3 row">
                     <div class="col-12">
                         <div class="card bg-light">
                             <div class="card-body">
                                 <h6>Coordinates</h6>
                                 <p id="modal-coordinates" class="mb-2"></p>
-                                <div id="map-placeholder" class="bg-secondary bg-opacity-10 rounded text-center py-5">
-                                    <i class="fas fa-map fa-3x text-muted mb-2"></i>
+                                <div id="map-placeholder" class="py-5 text-center rounded bg-secondary bg-opacity-10">
+                                    <i class="mb-2 fas fa-map fa-3x text-muted"></i>
                                     <p class="mb-0">Map would be displayed here</p>
                                 </div>
                             </div>

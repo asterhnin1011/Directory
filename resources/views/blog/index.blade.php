@@ -7,16 +7,16 @@
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class=" from-gray-100 to-white min-h-screen text-gray-800"  style="background-color:#f0f8ff">
+<body class="min-h-screen text-gray-800 from-gray-100 to-white"  style="background-color:#f0f8ff">
 
    <!-- Navbar -->
-<nav class="bg-white bg-opacity-80 backdrop-blur-md shadow-md sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+<nav class="sticky top-0 z-50 bg-white shadow-md bg-opacity-80 backdrop-blur-md">
+    <div class="container flex items-center justify-between px-4 py-4 mx-auto">
         <!-- Logo -->
         <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">My Blog</a>
 
         <!-- Hamburger Button (Mobile) -->
-        <button id="menu-toggle" class="md:hidden text-gray-600 focus:outline-none">
+        <button id="menu-toggle" class="text-gray-600 md:hidden focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
                  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -25,10 +25,10 @@
         </button>
 
         <!-- Navigation Links -->
-        <div id="nav-links" class="hidden md:flex flex-col md:flex-row md:items-center md:space-x-4 space-y-2 md:space-y-0 mt-4 md:mt-0 w-full md:w-auto">
+        <div id="nav-links" class="flex-col hidden w-full mt-4 space-y-2 md:flex md:flex-row md:items-center md:space-x-4 md:space-y-0 md:mt-0 md:w-auto">
             <!-- Home -->
             <a href="/"
-               class="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400 transition">
+               class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 transition rounded-md dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400">
                 <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -40,7 +40,7 @@
             @auth
             <!-- Create Post -->
             <a href="{{ route('blog.create') }}"
-               class="inline-flex items-center gap-2 bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md shadow hover:bg-indigo-700 transition">
+               class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -73,11 +73,21 @@
                     Logout
                 </button>
             </form>
-
+@auth
+    @if(Auth::user()->isAdmin())
+        <div class="mt-4">
+            <a href="{{ route('admin.index') }}"
+               class="inline-flex items-center px-4 py-2 text-gray-800 transition bg-gray-200 rounded-lg shadow hover:bg-gray-300">
+                <i class="mr-2 fas fa-arrow-left"></i>
+                Back
+            </a>
+        </div>
+    @endif
+@endauth
             @else
             <!-- Login -->
             <a href="{{ route('login') }}"
-               class="inline-flex items-center gap-1 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition text-sm font-medium">
+               class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 transition dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
                 <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -88,7 +98,7 @@
 
             <!-- Register -->
             <a href="{{ route('register') }}"
-               class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-md shadow transition">
+               class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
                      viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -111,21 +121,21 @@
 
 
 <!-- Blog Section -->
-<div class="container mx-auto px-4 py-12">
-    <h1 class="text-3xl font-extrabold mb-8 text-center text-indigo-700 tracking-tight">Latest Blog Posts</h1>
+<div class="container px-4 py-12 mx-auto">
+    <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1>
 
     @if($posts->count())
     <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         @foreach ($posts as $post)
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300 border border-gray-200">
+        <div class="overflow-hidden transition duration-300 transform bg-white border border-gray-200 rounded-lg shadow-md hover:scale-105">
             @if ($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="w-full h-36 object-cover">
+            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="object-cover w-full h-36">
             @endif
             <div class="p-4">
-                <h2 class="text-lg font-semibold mb-2 text-indigo-800">{{ $post->title }}</h2>
-                <p class="text-gray-600 text-sm mb-3">{{ Str::limit($post->description, 80) }}</p>
+                <h2 class="mb-2 text-lg font-semibold text-indigo-800">{{ $post->title }}</h2>
+                <p class="mb-3 text-sm text-gray-600">{{ Str::limit($post->description, 80) }}</p>
                <a href="{{ route('blog.show', $post->id) }}"
-   class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition duration-200 hover:underline">
+   class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition duration-200 hover:text-indigo-800 hover:underline">
    Read More
    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -137,7 +147,7 @@
                                     <form method="POST" action="{{ route('blog.destroy', $post->id) }}" onsubmit="return confirm('Are you sure you want to delete this post?');" class="mt-4">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-800 text-sm font-medium">
+                                        <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-800">
                                             Delete
                                         </button>
                                     </form>
@@ -147,13 +157,12 @@
         </div>
         @endforeach
     </div>
-
     <!-- Pagination -->
-    <div class="mt-10 flex justify-center">
+    {{-- <div class="flex justify-center mt-10">
         {{ $posts->links('pagination::tailwind') }}
-    </div>
+    </div> --}}
     @else
-    <p class="text-center text-gray-500 text-lg mt-12">No blog posts found.</p>
+    <p class="mt-12 text-lg text-center text-gray-500">No blog posts found.</p>
     @endif
 </div>
 

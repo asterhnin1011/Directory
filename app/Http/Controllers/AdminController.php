@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Post;
 // use Validator;
 use App\Models\Poi;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PoisImport;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\User;
 class AdminController extends Controller
 {
     /**
@@ -24,7 +24,9 @@ class AdminController extends Controller
                 ->latest()
                 ->get();
         });
-        return view('admin.home', compact('pois'));
+  $posts = Post::latest()->get(); // Fetch all posts
+  $totalUsers = User::count();
+        return view('admin.home', compact('pois', 'posts' , 'totalUsers'));
     }
 
     public function testing()

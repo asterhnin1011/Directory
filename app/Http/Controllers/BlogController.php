@@ -12,7 +12,7 @@ class BlogController extends Controller
      // Show the blog homepage or list of posts
    public function index()
 {
-    $posts = Post::latest()->paginate(5); // or ->get() if you don't want pagination
+    $posts = Post::all(); // or ->get() if you don't want pagination
     return view('blog.index', compact('posts')); // Make sure to use 'posts'
 }
 

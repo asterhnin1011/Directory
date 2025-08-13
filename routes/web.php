@@ -136,3 +136,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
      Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
 });
 
+Route::middleware(['auth','admin'])->group(function(){
+    Route::get('/admin/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
+});
