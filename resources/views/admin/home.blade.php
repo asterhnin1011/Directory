@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
+
 <div class="container-fluid py-4 fade-in">
 
     <div class="row mb-4">
@@ -26,6 +27,12 @@
                         </div>
                         <div class="d-flex flex-wrap gap-2 mt-3 mt-md-0">
                             <div class="me-5">
+                                
+ <a href="{{ route('admin.users.index') }}">
+        <button class="btn btn-info mt-2 mt-md-0">
+            <i class="fas fa-users me-2"></i>View Users
+        </button>
+    </a>
                                 <button class="btn btn-primary" data-bs-toggle="collapse"
                                     data-bs-target="#multiCollapseExample1">
                                     <i class="fas fa-plus-circle me-2"></i>Create POI
@@ -208,6 +215,7 @@ document.getElementById('logout-form').submit();">
                                     <option value="School">School</option>
                                     <option value="Religious building">Religious building</option>
                                     <option value="Gas">Gas</option>
+                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                             <div class="mb-3">

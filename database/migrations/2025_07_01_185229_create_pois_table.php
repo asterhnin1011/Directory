@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-       Schema::create('pois', function (Blueprint $table) {
-            $table->id(); // optional if 'user_id' is not the primary key
+        Schema::create('pois', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->string('fid')->nullable();
             $table->string('shape')->nullable();
@@ -43,11 +43,11 @@ return new class extends Migration
             $table->string('hn_myn')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
+            $table->double('longitude', 17, 14)->nullable();  // ✅ changed
+            $table->double('latitude', 17, 14)->nullable();   // ✅ changed
             $table->text('remark')->nullable();
             $table->date('verify_dat')->nullable();
-            $table->string('poi_pictur')->nullable(); // file path or URL
+            $table->string('poi_pictur')->nullable();
             $table->string('project')->nullable();
             $table->timestamps();
         });
@@ -58,6 +58,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('poi');
+        Schema::dropIfExists('pois');  // ✅ fixed table name
     }
 };

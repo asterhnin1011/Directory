@@ -78,6 +78,20 @@
             opacity: 0.9;
         }
 
+        .back-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
         @media (max-width: 480px) {
             .card {
                 padding: 2rem 1.5rem;
@@ -105,23 +119,26 @@
             @csrf
             <button type="submit">Resend Verification Email</button>
         </form>
+
+        <!-- Back Button -->
+        <a href="javascript:history.back()" class="back-button">← Back</a>
     </div>
 
     <script>
-    setInterval(async () => {
-        const response = await fetch('/api/user', {
-            headers: { 'Accept': 'application/json' },
-            credentials: 'same-origin'
-        });
+        setInterval(async () => {
+            const response = await fetch('/api/user', {
+                headers: { 'Accept': 'application/json' },
+                credentials: 'same-origin'
+            });
 
-        if (response.ok) {
-            const user = await response.json();
-            if (user.email_verified_at) {
-                window.location.href = '/dashboard';
+            if (response.ok) {
+                const user = await response.json();
+                if (user.email_verified_at) {
+                    window.location.href = '/dashboard';
+                }
             }
-        }
-    }, 5000);
-</script>
+        }, 5000);
+    </script>
 
 </body>
 </html>

@@ -7,7 +7,7 @@ use App\Http\Controllers\PlaceController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SocialController;
-// use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Auth;
@@ -130,4 +130,9 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 
 Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])
     ->middleware(['signed'])->name('verification.verify');
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+     Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
+});
 
