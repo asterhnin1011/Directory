@@ -51,7 +51,12 @@
             </form>
         </div>
     </div>
-
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
     <!-- Users Table -->
     <div class="shadow-sm card">
         <div class="p-0 card-body">
@@ -63,6 +68,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Registered At</th>
+                            <th style="width: 120px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,10 +78,19 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
+                                <td>
+                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-trash-alt"></i> Delete
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="py-4 text-center text-muted">No users found.</td>
+                                <td colspan="5" class="py-4 text-center text-muted">No users found.</td>
                             </tr>
                         @endforelse
                     </tbody>

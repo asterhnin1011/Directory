@@ -134,6 +134,7 @@ Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
      Route::get('/admin/home', [AdminController::class, 'index'])->name('admin.home');
+      Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 });
 
 Route::middleware(['auth','admin'])->group(function(){
