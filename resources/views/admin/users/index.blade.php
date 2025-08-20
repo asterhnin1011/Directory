@@ -67,6 +67,7 @@
                             <th style="width: 50px;">#</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Emial Verified Or Not Verified</th>
                             <th>Registered At</th>
                             <th style="width: 120px;">Actions</th>
                         </tr>
@@ -77,15 +78,20 @@
                                 <td>{{ $loop->iteration + ($users->firstItem() - 1) }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->email_verified_at ? $user->email_verified_at : 'Not Verified' }}</td>
                                 <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
                                 <td>
-                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">
-                                            <i class="fas fa-trash-alt"></i> Delete
-                                        </button>
+                                    @if(is_null($user->email_verified_at))
+                                        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                    </button>
                                     </form>
+                                    @else
+                                    <span class="text-gray-500">verified user</span>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

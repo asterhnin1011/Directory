@@ -118,7 +118,7 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('about') }}">About</a>
+                        <a class="nav-link" href="{{ url('/about') }}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#work">How It Works</a>

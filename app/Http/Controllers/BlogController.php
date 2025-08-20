@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\Auth;
 class BlogController extends Controller
 {
     //
@@ -126,5 +126,12 @@ public function destroy(Post $post)
 
     return redirect()->route('blog.show', $post->id)
                      ->with('success', 'Post updated successfully!');
+}
+public function myPosts()
+{
+    $user = Auth::user();
+    $posts = $user->posts()->latest()->get(); // Assumes 'posts' relationship exists in User model
+
+    return view('blog.myPosts', compact('posts'));
 }
 }

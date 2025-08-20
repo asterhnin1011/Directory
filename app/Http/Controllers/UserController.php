@@ -30,4 +30,9 @@ public function destroy(User $user)
 
     return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
 }
+public function showProfile()
+    {
+        $user = Auth::user(); // Currently logged-in user
+        return view('admin.users.showprofile', compact('user'));
+    }
 }

@@ -82,7 +82,7 @@ Route::get('/auth/redirect/{provider}', [SocialController::class, 'redirect'])->
 Route::get('/auth/callback/{provider}', [SocialController::class, 'callback'])->name('social.callback');
 Route::get('/places/{id}', [PlaceController::class, 'details']);
 Route::get('/about', function () {
-    return view('pages.aboutus'); // Make sure your file is at resources/views/aboutus.blade.php
+    return view('pages.about'); // Make sure your file is at resources/views/about.blade.php
 })->name('about');
 Route::get('/places/{id}', [PlaceController::class, 'show'])->name('places.details');
 // Guest users can see blog
@@ -139,4 +139,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth','admin'])->group(function(){
     Route::get('/admin/blogs', [BlogController::class, 'index'])->name('admin.blogs.index');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users/showprofile', [UserController::class, 'showProfile'])->name('users.showprofile');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/blog/myPosts', [BlogController::class, 'myPosts'])->name('blog.myPosts');
 });

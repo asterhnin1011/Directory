@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Alpine.js -->
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body class="min-h-screen text-gray-800 from-gray-100 to-white"  style="background-color:#f0f8ff">
 
@@ -13,7 +15,7 @@
 <nav class="sticky top-0 z-50 bg-white shadow-md bg-opacity-80 backdrop-blur-md">
     <div class="container flex items-center justify-between px-4 py-4 mx-auto">
         <!-- Logo -->
-        <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">My Blog</a>
+        <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">Myeik Directory</a>
 
         <!-- Hamburger Button (Mobile) -->
         <button id="menu-toggle" class="text-gray-600 md:hidden focus:outline-none">
@@ -119,52 +121,104 @@
     });
 </script>
 
+<br>
+    <!-- Blog Content -->
+        <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1>
+<!-- Blog Page with Sidebar -->
+<div x-data="{ sidebarOpen: false }" class="container mx-auto px-4 py-12">
 
-<!-- Blog Section -->
-<div class="container px-4 py-12 mx-auto">
-    <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1>
-
-    @if($posts->count())
-    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        @foreach ($posts as $post)
-        <div class="overflow-hidden transition duration-300 transform bg-white border border-gray-200 rounded-lg shadow-md hover:scale-105">
-            @if ($post->image)
-            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="object-cover w-full h-36">
-            @endif
-            <div class="p-4">
-                <h2 class="mb-2 text-lg font-semibold text-indigo-800">{{ $post->title }}</h2>
-                <p class="mb-3 text-sm text-gray-600">{{ Str::limit($post->description, 80) }}</p>
-               <a href="{{ route('blog.show', $post->id) }}"
-   class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition duration-200 hover:text-indigo-800 hover:underline">
-   Read More
-   <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-   </svg>
-</a>
- @auth
-                                @if(Auth::user()->isAdmin())
-                                    <form method="POST" action="{{ route('blog.destroy', $post->id) }}" onsubmit="return confirm('Are you sure you want to delete this post?');" class="mt-4">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-800">
-                                            Delete
-                                        </button>
-                                    </form>
-                                @endif
-                            @endauth
-            </div>
-        </div>
-        @endforeach
+    <!-- Mobile Toggle Button -->
+    <div class="mb-6 flex justify-between items-center lg:hidden">
+        <h2 class="text-xl font-bold text-indigo-700">Dashboard</h2>
+        <button @click="sidebarOpen = !sidebarOpen" class="p-2 text-indigo-600 hover:bg-indigo-100 rounded-md">
+            <svg x-show="!sidebarOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg x-show="sidebarOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
     </div>
-    <!-- Pagination -->
-    {{-- <div class="flex justify-center mt-10">
-        {{ $posts->links('pagination::tailwind') }}
-    </div> --}}
-    @else
-    <p class="mt-12 text-lg text-center text-gray-500">No blog posts found.</p>
-    @endif
-</div>
 
+    <!-- Responsive Layout -->
+    <div class="flex flex-col lg:flex-row gap-8">
+
+        <!-- Sidebar -->
+        <aside :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
+               class="w-full lg:w-1/4 bg-white rounded-lg shadow-md border border-gray-200 p-6 transition-all duration-300 lg:block">
+            <h2 class="mb-4 text-xl font-bold text-indigo-700">Dashboard</h2>
+            <ul class="space-y-3">
+                <li>
+                    <a href="{{ route('blog.create') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
+                        ➕ Add Post
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('users.showprofile') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
+                        👤 Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
+                        ✏️ Edit Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('blog.myPosts') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
+                        📄 My Blog Posts
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Blog Content -->
+        <div class="w-full lg:w-4/4">
+            {{-- <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1> --}}
+
+            @if($posts->count())
+            <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
+                @foreach ($posts as $post)
+                <div class="overflow-hidden transition duration-300 transform bg-white border border-gray-200 rounded-lg shadow-md hover:scale-105">
+                    @if ($post->image)
+                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="object-cover w-full h-36">
+                    @endif
+                    <div class="p-4">
+                        <h2 class="mb-2 text-lg font-semibold text-indigo-800">{{ $post->title }}</h2>
+                        <p class="mb-3 text-sm text-gray-600">{{ Str::limit($post->description, 80) }}</p>
+                        <a href="{{ route('blog.show', $post->id) }}"
+                           class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition duration-200 hover:text-indigo-800 hover:underline">
+                            Read More
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                        @auth
+                            @if(Auth::user()->isAdmin())
+                                <form method="POST" action="{{ route('blog.destroy', $post->id) }}"
+                                      onsubmit="return confirm('Are you sure you want to delete this post?');"
+                                      class="mt-4">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-800">
+                                        Delete
+                                    </button>
+                                </form>
+                            @endif
+                        @endauth
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @else
+            <p class="mt-12 text-lg text-center text-gray-500">No blog posts found.</p>
+            @endif
+        </div>
+    </div>
+</div>
 </body>
 </html>
