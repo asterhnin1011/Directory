@@ -31,25 +31,23 @@ class BlogController extends Controller
 
 public function store(Request $request)
 {
-    $request->validate([
-    'title' => 'required|string|max:255',
-    'description' => 'required|string',
-    'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-]);
-    $path = null;
+    $validated = $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+    ]);
+
     if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('posts', 'public');
+        $validated['image'] = $request->file('image')->store('posts', 'public');
     }
 
-    \App\Models\Post::create([
-        'user_id' => auth()->id(),
-        'title' => $request->title,
-        'description' => $request->description,
-        'image' => $path,
-    ]);
+    $validated['user_id'] = auth()->id();
+
+    \App\Models\Post::create($validated);
 
     return redirect()->route('blog.index')->with('success', 'Post created successfully.');
 }
+
     public function __construct()
 {
     $this->middleware('auth')->except(['index', 'show']);
@@ -62,7 +60,7 @@ public function edit($id)
     if (auth()->id() !== $post->user_id) {
         abort(403); // Forbidden
     }
-
+// dd($post->image);
     return view('blog.edit', compact('post'));
 }
 
@@ -84,31 +82,20 @@ public function destroy(Post $post)
  public function update(Request $request, $id)
 {
     $post = Post::findOrFail($id);
-    // dd($post);
-// dd($post->user_id);
-// dd(auth()->id());
     if (auth()->id() !== $post->user_id) {
         abort(403);
     }
-    // else {
-        // dd(true);
-
          $validated = $request->validate([
         'title' => 'string|max:255',
         'description' => 'string',
         'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
     ]);
-    // dd($request->all());
-    // }
+
 
     $post->update([
         'title' => $validated['title'],
         'description' => $validated['description'],
     ]);
-    // dd('he');
-
-    // dd($validated);
-// dd($post);
     if ($request->hasFile('image')) {
 
         // Optional: delete old image
@@ -120,9 +107,6 @@ public function destroy(Post $post)
         // $post->image = $path;
         $post->update(['image' => $path]);
     }
-    // $post->title = $validated['title'];
-    // $post->description = $validated['description'];
-    // $post->save();
 
     return redirect()->route('blog.show', $post->id)
                      ->with('success', 'Post updated successfully!');

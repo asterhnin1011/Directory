@@ -46,58 +46,59 @@
     <div class="max-w-3xl p-6 mx-auto bg-white shadow-md dark:bg-gray-800 rounded-2xl sm:p-10">
       <h1 class="mb-6 text-2xl font-bold text-indigo-600 sm:text-3xl dark:text-indigo-400">Edit Post</h1>
 
-      <form action="{{ route('blog.edit', $post->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @method('PUT')
+      <form action="{{ route('blog.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
 
-        <!-- Title -->
-        <div class="mb-6">
-          <label for="title" class="block mb-2 font-semibold">Title</label>
-          <input type="text" name="title" id="title" value="{{ old('title', $post->title) }}"
-                 class="w-full px-4 py-2 border border-gray-300 rounded-md dark:border-gray-700 focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">
-          @error('title')
+    <!-- Title -->
+    <div class="mb-6">
+        <label for="title" class="block mb-2 font-semibold">Title</label>
+        <input type="text" name="title" id="title" value="{{ old('title', $post->title) }}"
+               class="w-full px-4 py-2 border border-gray-300 rounded-md dark:border-gray-700 focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">
+        @error('title')
             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-          @enderror
-        </div>
+        @enderror
+    </div>
 
-        <!-- Body -->
-        <div class="mb-6">
-          <label for="description" class="block mb-2 font-semibold">description</label>
-          <textarea name="description" id="description" rows="6"
-                    class="w-full px-4 py-2 border border-gray-300 rounded-md dark:border-gray-700 focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">{{ old('description', $post->description) }}</textarea>
-          @error('description')
+    <!-- Description -->
+    <div class="mb-6">
+        <label for="description" class="block mb-2 font-semibold">Description</label>
+        <textarea name="description" id="description" rows="6"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md dark:border-gray-700 focus:outline-none focus:ring focus:ring-indigo-400 dark:bg-gray-900">{{ old('description', $post->description) }}</textarea>
+        @error('description')
             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-          @enderror
-        </div>
+        @enderror
+    </div>
 
-        <!-- Image Upload -->
-        <div class="mb-6">
-          <label for="image" class="block mb-2 font-semibold">Change Image</label>
-          <input type="file" name="image" id="image" accept="image/*"
-                 class="w-full px-3 py-2 border border-gray-300 rounded-md dark:border-gray-700 dark:bg-gray-900"
-                 onchange="previewImage(event)">
-          @error('image')
+    <!-- Image Upload -->
+    <div class="mb-6">
+        <label for="image" class="block mb-2 font-semibold">Change Image</label>
+        <input type="file" name="image" id="image" accept="image/*"
+               class="w-full px-3 py-2 border border-gray-300 rounded-md dark:border-gray-700 dark:bg-gray-900"
+               onchange="previewImage(event)">
+        @error('image')
             <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-          @enderror
+        @enderror
 
-          @if ($post->image)
+        @if ($post->image)
             <p class="mt-2 text-sm">Current Image:</p>
             <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image"
                  class="w-40 h-auto mt-2 border border-gray-300 rounded shadow dark:border-gray-600">
-          @endif
+        @endif
 
-          <img id="imagePreview" src="#" alt="New Image Preview"
-               class="hidden w-40 h-auto mt-4 rounded-md shadow dark:border-gray-600" />
-        </div>
+        <img id="imagePreview" src="#" alt="New Image Preview"
+             class="hidden w-40 h-auto mt-4 rounded-md shadow dark:border-gray-600" />
+    </div>
 
-        <!-- Submit -->
-        <div class="flex items-center justify-between">
-          <a href="{{ route('blog.index') }}"
-             class="text-sm text-gray-600 underline hover:text-indigo-600 dark:hover:text-indigo-400">← Back to Posts</a>
-          <button type="submit"
-                  class="px-6 py-2 text-white transition bg-indigo-600 rounded-md hover:bg-indigo-700">Update Post</button>
-        </div>
-      </form>
+    <!-- Submit -->
+    <div class="flex items-center justify-between">
+        <a href="{{ route('blog.index') }}"
+           class="text-sm text-gray-600 underline hover:text-indigo-600 dark:hover:text-indigo-400">← Back to Posts</a>
+        <button type="submit"
+                class="px-6 py-2 text-white transition bg-indigo-600 rounded-md hover:bg-indigo-700">Update Post</button>
+    </div>
+</form>
+
     </div>
   </main>
 

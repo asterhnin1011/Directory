@@ -7,18 +7,18 @@
     <!-- Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="flex flex-col min-h-screen bg-gray-100">
 
     <!-- Navbar -->
-    <nav class="bg-white bg-opacity-80 backdrop-blur-md shadow-md sticky top-0 z-50">
-      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <nav class="sticky top-0 z-50 bg-white shadow-md bg-opacity-80 backdrop-blur-md">
+      <div class="container flex items-center justify-between px-4 py-4 mx-auto">
         <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">My Blog</a>
 
-        <div class="space-x-4 flex items-center">
+        <div class="flex items-center space-x-4">
 
 
           @auth
-            <a href="{{ route('blog.create') }}" class="inline-flex items-center gap-2 bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md shadow hover:bg-indigo-700 transition">
+            <a href="{{ route('blog.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
               <!-- Plus Icon -->
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -45,21 +45,21 @@
               </button>
             </form>
           @else
-            <a href="{{ route('login') }}" class="text-gray-700 hover:text-indigo-600 transition">Login</a>
-            <a href="{{ route('register') }}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">Register</a>
+            <a href="{{ route('login') }}" class="text-gray-700 transition hover:text-indigo-600">Login</a>
+            <a href="{{ route('register') }}" class="px-4 py-2 text-white transition bg-indigo-600 rounded-md hover:bg-indigo-700">Register</a>
           @endauth
         </div>
       </div>
     </nav>
 
     <!-- Main Content: Form -->
-    <main class="flex-grow flex items-center justify-center px-4 py-8">
-        <div class="w-full max-w-2xl bg-white p-8 rounded-lg shadow-lg">
-            <h2 class="text-2xl font-bold mb-6 text-center">Create New Blog Post</h2>
+    <main class="flex items-center justify-center flex-grow px-4 py-8">
+        <div class="w-full max-w-2xl p-8 bg-white rounded-lg shadow-lg">
+            <h2 class="mb-6 text-2xl font-bold text-center">Create New Blog Post</h2>
 
             @if ($errors->any())
-                <div class="mb-4 p-4 bg-red-100 text-red-700 rounded">
-                    <ul class="list-disc pl-5">
+                <div class="p-4 mb-4 text-red-700 bg-red-100 rounded">
+                    <ul class="pl-5 list-disc">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -72,7 +72,7 @@
 
                 <!-- Title -->
                 <div class="mb-4">
-                    <label for="title" class="block text-gray-700 font-semibold mb-2">Title</label>
+                    <label for="title" class="block mb-2 font-semibold text-gray-700">Title</label>
                     <input
                         type="text"
                         name="title"
@@ -85,7 +85,7 @@
 
                 <!-- Description -->
                 <div class="mb-4">
-                    <label for="description" class="block text-gray-700 font-semibold mb-2">Description</label>
+                    <label for="description" class="block mb-2 font-semibold text-gray-700">Description</label>
                     <textarea
                         name="description"
                         id="description"
@@ -97,7 +97,7 @@
 
                 <!-- Image input -->
                 <div class="mb-6">
-                    <label for="image" class="block text-gray-700 font-semibold mb-2">Upload Image</label>
+                    <label for="image" class="block mb-2 font-semibold text-gray-700">Upload Image</label>
                     <input
                         type="file"
                         name="image"
@@ -107,7 +107,7 @@
                         onchange="previewImage(event)"
                     />
                     @error('image')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
                     @enderror
 
                     <!-- Image preview -->
@@ -115,15 +115,15 @@
                         id="imagePreview"
                         src="#"
                         alt="Image Preview"
-                        class="mt-4 w-40 h-auto hidden rounded-md shadow"
+                        class="hidden w-40 h-auto mt-4 rounded-md shadow"
                     />
                 </div>
 
-                <div class="flex justify-between items-center">
+                <div class="flex items-center justify-between">
                     <!-- Back Button -->
                     <a
                         href="{{ route('blog.index') }}"
-                        class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+                        class="px-6 py-2 text-white transition bg-blue-600 rounded-md hover:bg-blue-700"
                     >
                         Back
                     </a>
@@ -131,7 +131,7 @@
                     <!-- Reset Button -->
                     <button
                         type="reset"
-                        class="bg-yellow-500 text-white px-6 py-2 rounded-md hover:bg-yellow-600 transition"
+                        class="px-6 py-2 text-white transition bg-yellow-500 rounded-md hover:bg-yellow-600"
                     >
                         Reset
                     </button>
@@ -139,7 +139,7 @@
                     <!-- Submit Button -->
                     <button
                         type="submit"
-                        class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition"
+                        class="px-6 py-2 text-white transition bg-blue-600 rounded-md hover:bg-blue-700"
                     >
                         Publish
                     </button>
@@ -147,7 +147,6 @@
             </form>
         </div>
     </main>
-
 <script>
     function previewImage(event) {
         const input = event.target;

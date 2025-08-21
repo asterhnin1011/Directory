@@ -111,7 +111,9 @@
         </form>
 
         <!-- Back Button -->
-        <button onclick="history.back()" class="back-button">← Back</button>
+        <button onclick="window.location.href='{{ route('login') }}'" class="px-4 py-2 text-white bg-indigo-600 rounded back-button hover:bg-indigo-700">
+    ← Back
+</button>
     </div>
 
     <script>

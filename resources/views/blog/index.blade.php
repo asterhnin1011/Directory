@@ -125,12 +125,12 @@
     <!-- Blog Content -->
         <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1>
 <!-- Blog Page with Sidebar -->
-<div x-data="{ sidebarOpen: false }" class="container mx-auto px-4 py-12">
+<div x-data="{ sidebarOpen: false }" class="container px-4 py-12 mx-auto">
 
     <!-- Mobile Toggle Button -->
-    <div class="mb-6 flex justify-between items-center lg:hidden">
+    <div class="flex items-center justify-between mb-6 lg:hidden">
         <h2 class="text-xl font-bold text-indigo-700">Dashboard</h2>
-        <button @click="sidebarOpen = !sidebarOpen" class="p-2 text-indigo-600 hover:bg-indigo-100 rounded-md">
+        <button @click="sidebarOpen = !sidebarOpen" class="p-2 text-indigo-600 rounded-md hover:bg-indigo-100">
             <svg x-show="!sidebarOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
                  viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -145,35 +145,53 @@
     </div>
 
     <!-- Responsive Layout -->
-    <div class="flex flex-col lg:flex-row gap-8">
+    <div class="flex flex-col gap-8 lg:flex-row">
 
         <!-- Sidebar -->
-        <aside :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
-               class="w-full lg:w-1/4 bg-white rounded-lg shadow-md border border-gray-200 p-6 transition-all duration-300 lg:block">
-            <h2 class="mb-4 text-xl font-bold text-indigo-700">Dashboard</h2>
-            <ul class="space-y-3">
-                <li>
-                    <a href="{{ route('blog.create') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
-                        ➕ Add Post
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('users.showprofile') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
-                        👤 Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
-                        ✏️ Edit Profile
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('blog.myPosts') }}" class="block px-4 py-2 text-indigo-600 hover:text-white hover:bg-indigo-600 rounded transition">
-                        📄 My Blog Posts
-                    </a>
-                </li>
-            </ul>
-        </aside>
+<aside :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
+       class="w-full p-6 transition-all duration-300 border border-indigo-100 shadow-lg lg:w-1/4 bg-gradient-to-br from-indigo-50 to-white rounded-xl lg:block">
+
+    <!-- Sidebar Header -->
+    <h2 class="flex items-center gap-2 mb-6 text-2xl font-extrabold text-indigo-700">
+        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
+        </svg>
+        Dashboard
+    </h2>
+
+    <!-- Sidebar Navigation -->
+    <ul class="space-y-4 text-sm">
+        <li>
+            <a href="{{ route('blog.index') }}"
+            class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
+            <span>📚</span>
+            <span>All Posts</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('users.showprofile') }}"
+               class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
+                <span>👤</span>
+                <span>Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('profile.edit') }}"
+               class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
+                <span>✏️</span>
+                <span>Edit Profile</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('blog.myPosts') }}"
+               class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
+                <span>📄</span>
+                <span>My Blog Posts</span>
+            </a>
+        </li>
+    </ul>
+</aside>
 
         <!-- Blog Content -->
         <div class="w-full lg:w-4/4">
