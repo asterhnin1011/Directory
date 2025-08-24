@@ -10,6 +10,8 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script src="https://unpkg.com/feather-icons"></script>
+<!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body class="flex flex-col min-h-screen bg-gradient-to-r from-indigo-100 via-white to-indigo-100">
 

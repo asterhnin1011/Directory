@@ -5,7 +5,8 @@
     <title>Email Verification</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         * {
             box-sizing: border-box;
@@ -92,6 +93,8 @@
             }
         }
     </style>
+    <!-- Favicons -->
+  <link href="assets/img/logo/directorylogo.png" rel="icon">
 </head>
 <body>
 

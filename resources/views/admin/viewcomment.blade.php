@@ -21,6 +21,8 @@
             background-color: #f1f5ff;
         }
     </style>
+    <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body>
 <div class="container py-4">

@@ -7,7 +7,8 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
+<!-- Favicons -->
+  <link href="assets/img/logo/directorylogo.png" rel="icon">
     <style>
         * {
             box-sizing: border-box;

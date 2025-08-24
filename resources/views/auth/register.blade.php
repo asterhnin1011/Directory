@@ -20,6 +20,8 @@
     animation: fade-in-down 0.3s ease-out forwards;
 }
 </style>
+ <!-- Favicons -->
+  <link href="assets/img/logo/directorylogo.png" rel="icon">
 </head>
 <body class="flex items-center justify-center min-h-screen" style="background-color:#f0f8ff">
       <!--  Header Navbar with Blur -->

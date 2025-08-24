@@ -171,7 +171,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
                             <li><a class="dropdown-item" href="{{ route('blog.index') }}">Blog</a></li>
-                            <li><a class="dropdown-item" href="#blog">Blog Listing</a></li>
+                            {{-- <li><a class="dropdown-item" href="#blog">Blog Listing</a></li> --}}
                             <li><a class="dropdown-item" href="#places">Popular Places</a></li>
                         </ul>
                     </li>

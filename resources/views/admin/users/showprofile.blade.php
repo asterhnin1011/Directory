@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js for toggle -->
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 
 <body class="bg-gray-100">

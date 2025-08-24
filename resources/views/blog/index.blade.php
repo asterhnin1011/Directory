@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <!-- Alpine.js -->
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+     <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body class="min-h-screen text-gray-800 from-gray-100 to-white"  style="background-color:#f0f8ff">
 

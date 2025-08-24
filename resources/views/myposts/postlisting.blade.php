@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/alpinejs" defer></script> <!-- Required for x-data -->
+  <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 min-h-screen">
 

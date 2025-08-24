@@ -21,6 +21,8 @@
             background-color: #f1f5ff;
         }
     </style>
+    <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body>
 <div class="container py-4">
@@ -60,7 +62,7 @@
                 <table class="table mb-0 align-middle table-striped table-hover">
                     <thead class="table-primary">
                         <tr>
-                            <th style="width: 50px;">#</th>
+                            <th style="width: 50px;">No</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Emial Verified Or Not Verified</th>

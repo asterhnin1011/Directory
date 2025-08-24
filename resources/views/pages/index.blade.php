@@ -27,6 +27,7 @@
                 <option value="Religious building">Religious building</option>
                 <option value="Hospital">Hospital</option>
                 <option value="Restaurant">Restaurant</option>
+                <option value="School">School</option>
                 <option value="Hotel">Hotel</option>
                 <option value="Gas">Gas</option>
                 <option value="Other">Other</option>

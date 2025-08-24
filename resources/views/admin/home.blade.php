@@ -10,7 +10,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
 <link rel="stylesheet" href="styles.css">
-
+<!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 <div class="py-4 container-fluid fade-in">
 
     <div class="mb-4 row">
@@ -47,10 +48,10 @@
                                     data-bs-target="#multiCollapseExample1">
                                     <i class="fas fa-plus-circle me-2"></i>Create POI
                                 </button>
-                                <button class="btn btn-outline-secondary" data-bs-toggle="collapse"
+                                {{-- <button class="btn btn-outline-secondary" data-bs-toggle="collapse"
                                     data-bs-target="#importCollapse">
                                     <i class="fas fa-file-import me-2"></i>Import Data
-                                </button>
+                                </button> --}}
                             </div>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
 document.getElementById('logout-form').submit();">
@@ -104,7 +105,7 @@ document.getElementById('logout-form').submit();">
                         <table id="poiTable" class="table table-hover display responsive nowrap w-100">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>No</th>
                                     <th>POI_Name_Eng</th>
                                     <th>POI_Name_Myn</th>
                                     <th>Type</th>
@@ -236,7 +237,7 @@ document.getElementById('logout-form').submit();">
                             </div>
                             <div class="mb-3">
                                 <label for="phone" class="form-label">Phone <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="phone" name="phone" required
+                                <input type="text" class="form-control" id="phone" name="phone"
                                     placeholder="Enter phone number">
                             </div>
 
@@ -576,11 +577,11 @@ $(document).ready(function() {
                     text: '<i class="fas fa-copy me-1"></i> Copy',
                     className: 'btn-sm'
                 },
-                {
-                    extend: 'csv',
-                    text: '<i class="fas fa-file-csv me-1"></i> CSV',
-                    className: 'btn-sm'
-                },
+
+                    // extend: 'csv',
+                    // text: '<i class="fas fa-file-csv me-1"></i> CSV',
+                    // className: 'btn-sm'
+
                 {
                     extend: 'excel',
                     text: '<i class="fas fa-file-excel me-1"></i> Excel',

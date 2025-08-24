@@ -38,6 +38,8 @@
             background-color: #5a6268;
         }
     </style>
+    <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body>
 

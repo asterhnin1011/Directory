@@ -16,6 +16,8 @@
       }
     }
   </script>
+  <!-- Favicons -->
+   <link href="/assets/img/logo/directorylogo.png" rel="icon" type="image/png" />
 </head>
 <body class="flex flex-col min-h-screen text-gray-800 bg-gray-50 dark:bg-gray-900 dark:text-gray-100">
 
