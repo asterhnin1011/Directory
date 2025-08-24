@@ -38,7 +38,7 @@
         <i class="fas fa-file-alt me-2"></i>View Posts
     </button>
 </a>
-<a href="{{ route('admin.users.viewcomment') }}">
+<a href="{{ route('admin.viewcomment') }}">
     <button class="mt-2 btn btn-success mt-md-0">
         <i class="fas fa-comments me-2"></i>View Comments
     </button>

@@ -160,7 +160,7 @@ Route::put('/users/{user}', [UserController::class, 'update'])->name('users.upda
 Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
 
-Route::get('/admin/comments', [CommentController::class, 'index'])->name('admin.users.viewcomment');
+Route::get('/admin/comments', [CommentController::class, 'index'])->name('admin.viewcomment');
 Route::delete('/admin/comments/{comment}', [CommentController::class, 'destroy'])->name('admin.comments.destroy')->middleware('auth');
 
 

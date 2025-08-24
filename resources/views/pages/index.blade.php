@@ -192,7 +192,7 @@
 </section>
 <!-- Popular Locations End -->
 
-<!--Posts Section Start -->
+{{-- <!--Posts Section Start -->
 <section id="blog" class="pt-70 pb-70">
     <div class="container">
         <div class="text-center mb-50">
@@ -222,7 +222,7 @@
         </div>
     </div>
 </section>
-<!--Posts Section End -->
+<!--Posts Section End --> --}}
 
 
        <!-- Services Area Start -->
