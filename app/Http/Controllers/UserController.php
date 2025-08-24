@@ -35,4 +35,10 @@ public function showProfile()
         $user = Auth::user(); // Currently logged-in user
         return view('admin.users.showprofile', compact('user'));
     }
+    public function edit()
+{
+    $user = auth()->user();
+    return view('admin.users.edit', compact('user'));
+}
+
 }

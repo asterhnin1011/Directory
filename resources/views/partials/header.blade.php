@@ -12,8 +12,9 @@
 		<link rel="shortcut icon" type="image/x-icon" href="public\assets\img\icon\directorylogo.png">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-        <!-- Favicon -->
-    <link href="public\assets\img\logo\directorylogo.png" rel="icon">
+         <!-- Favicons -->
+  <link href="assets/img/logo/directorylogo.png" rel="icon">
+  {{-- <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> --}}
 		<!-- CSS here -->
             <link rel="stylesheet" href="assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -77,6 +78,45 @@
                 margin-top: 0.5rem;
             }
         }
+        /* Spinner circle – SMALLER SIZE */
+.preloader-circle1 {
+    width: 60px;               /* reduced from 100px */
+    height: 60px;
+    border: 3px solid #ccc;
+    border-top: 3px solid #07a3f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Container for circle & image */
+.preloader-inner {
+    position: relative;
+    width: 60px;              /* same as circle */
+    height: 55px;
+}
+
+/* Center the image */
+.preloader-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Image size – make it fit nicely */
+.preloader-img img {
+    width: 60px;              /* fits inside 60px circle */
+    height: auto;
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
     </style>
 
             @stack('css')
@@ -85,15 +125,15 @@
      <body>
     <!-- Preloader Start -->
     <div id="preloader-active">
-        <div class="preloader d-flex align-items-center justify-content-center">
-            <div class="preloader-inner position-relative">
-                <div class="preloader-circle"></div>
-                <div class="preloader-img pere-text">
-                    <img src="assets\img\logo\directorylogo.png" alt="">
-                </div>
-            </div>
-        </div>
+  <div class="preloader d-flex align-items-center justify-content-center">
+    <div class="preloader-inner position-relative">
+      <div class="preloader-circle1"></div>
+      <div class="preloader-img pere-text">
+        <img src="assets/img/logo/directorylogo.png" alt="">
+      </div>
     </div>
+  </div>
+</div>
     <!-- Preloader end -->
 <!-- Navbar Start -->
 <header>
@@ -102,7 +142,7 @@
             <!-- Logo + Title -->
             <a class="navbar-brand d-flex align-items-center" href="/">
                 <img src="{{ asset('assets/img/logo/directorylogo.png') }}" alt="Directory Logo" style="height: 40px;">
-                <span class="ms-2 fw-bold" style="font-size: 1.25rem; color: #333;">Myeik Directory</span>
+                <span class="ms-2 fw-bold" style="font-size: 1.25rem; color: #2f09ed;">Myeik Directory</span>
             </a>
 
             <!-- Mobile Toggle -->
@@ -131,6 +171,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="pagesDropdown">
                             <li><a class="dropdown-item" href="{{ route('blog.index') }}">Blog</a></li>
+                            <li><a class="dropdown-item" href="#blog">Blog Listing</a></li>
                             <li><a class="dropdown-item" href="#places">Popular Places</a></li>
                         </ul>
                     </li>

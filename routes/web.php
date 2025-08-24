@@ -16,7 +16,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\VerificationController;
-
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,11 +62,17 @@ Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
 
     if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-        if ($user->role === 1) {
-            return redirect('/admin'); // Redirect to admin home page
+        $user = Auth::user();
+
+        if (!$user->hasVerifiedEmail()) {
+            Auth::logout();
+            return back()->with('error', 'Your email address is not verified.');
         }
-          return redirect()->route('blog.index');  // Always go here after login
+
+        if ($user->role === 1) {
+            return redirect('/admin');
+        }
+        return redirect()->route('blog.index');
     }
 
     return back()->with('error', 'Invalid credentials.');
@@ -146,6 +152,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/showprofile', [UserController::class, 'showProfile'])->name('users.showprofile');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/blog/myPosts', [BlogController::class, 'myPosts'])->name('blog.myPosts');
-});
+Route::get('/myposts', [BlogController::class, 'postListing'])->name('myposts.postlisting');
+
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
+Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy')->middleware('auth');
+
+Route::get('/admin/comments', [CommentController::class, 'index'])->name('admin.users.viewcomment');
+Route::delete('/admin/comments/{comment}', [CommentController::class, 'destroy'])->name('admin.comments.destroy')->middleware('auth');
+
+

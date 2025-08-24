@@ -12,105 +12,65 @@
 <body class="min-h-screen text-gray-800 from-gray-100 to-white"  style="background-color:#f0f8ff">
 
    <!-- Navbar -->
-<nav class="sticky top-0 z-50 bg-white shadow-md bg-opacity-80 backdrop-blur-md">
-    <div class="container flex items-center justify-between px-4 py-4 mx-auto">
-        <!-- Logo -->
-        <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">Myeik Directory</a>
+<nav class="sticky top-0 z-50 bg-white shadow-md dark:bg-gray-800 bg-opacity-80 backdrop-blur-md">
+  <div class="container flex items-center justify-between px-4 py-4 mx-auto">
+    <!-- Logo -->
+    <a href="{{ route('blog.index') }}" class="text-2xl font-bold text-indigo-600">Myeik Directory</a>
 
-        <!-- Hamburger Button (Mobile) -->
-        <button id="menu-toggle" class="text-gray-600 md:hidden focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-        </button>
+    <!-- Hamburger Button (Mobile) -->
+    <button id="menu-toggle" class="text-gray-600 md:hidden focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
 
-        <!-- Navigation Links -->
-        <div id="nav-links" class="flex-col hidden w-full mt-4 space-y-2 md:flex md:flex-row md:items-center md:space-x-4 md:space-y-0 md:mt-0 md:w-auto">
-            <!-- Home -->
-            <a href="/"
-               class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 transition rounded-md dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400">
-                <svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
-                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M3 9.75L12 3l9 6.75V21a1.5 1.5 0 01-1.5 1.5h-4.5v-6h-6v6H4.5A1.5 1.5 0 013 21V9.75z" />
-                </svg>
-                Home
+    <!-- Navigation Links -->
+    <div id="nav-links" class="flex-col hidden mt-4 space-y-2 md:flex md:flex-row md:items-center md:space-x-4 md:space-y-0 md:mt-0">
+    <a href="/" class="inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 transition rounded-md dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400">
+        🏠 Home
+    </a>
+
+    @auth
+        <a href="{{ route('blog.create') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
+            ➕ Create Post
+        </a>
+    @endauth
+
+    <!-- Welcome message visible to both guests and users -->
+    <span class="inline-flex items-center gap-1 text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1.5 rounded-full">
+        👤 Welcome,
+        @auth
+            {{ Auth::user()->name }}
+        @else
+            Guest
+        @endauth
+    </span>
+
+    @auth
+        <form method="POST" action="{{ route('logout') }}" class="inline">
+            @csrf
+            <button type="submit" class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1.5 rounded-md hover:bg-red-100 hover:text-red-600 transition">
+                🔓 Logout
+            </button>
+        </form>
+
+        @if(Auth::user()->isAdmin())
+            <a href="{{ route('admin.index') }}" class="inline-flex items-center px-4 py-2 text-sm text-gray-800 bg-gray-200 rounded-md hover:bg-gray-300">
+                ← Back to Admin
             </a>
-
-            @auth
-            <!-- Create Post -->
-            <a href="{{ route('blog.create') }}"
-               class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 4v16m8-8H4" />
-                </svg>
-                Create Post
-            </a>
-
-            <!-- Welcome User -->
-            <span
-                class="inline-flex items-center gap-1 text-sm text-gray-600 font-medium bg-gray-100 px-3 py-1.5 rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-indigo-600" fill="none"
-                     viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M5.121 17.804A9.978 9.978 0 0112 15c2.21 0 4.243.714 5.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                Welcome, {{ Auth::user()->name }}
-            </span>
-
-            <!-- Logout -->
-            <form method="POST" action="{{ route('logout') }}" class="inline">
-                @csrf
-                <button type="submit"
-                        class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 bg-gray-100 px-3 py-1.5 rounded-md hover:bg-red-100 hover:text-red-600 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none"
-                         viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m4-8V7a2 2 0 00-4 0v1" />
-                    </svg>
-                    Logout
-                </button>
-            </form>
-@auth
-    @if(Auth::user()->isAdmin())
-        <div class="mt-4">
-            <a href="{{ route('admin.index') }}"
-               class="inline-flex items-center px-4 py-2 text-gray-800 transition bg-gray-200 rounded-lg shadow hover:bg-gray-300">
-                <i class="mr-2 fas fa-arrow-left"></i>
-                Back
-            </a>
-        </div>
-    @endif
-@endauth
-            @else
-            <!-- Login -->
-            <a href="{{ route('login') }}"
-               class="inline-flex items-center gap-1 text-sm font-medium text-gray-700 transition dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
-                <svg class="w-4 h-4 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2"
-                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M15 12H3m6-6l-6 6 6 6M21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v14a2 2 0 002 2h4a2 2 0 002-2V5z" />
-                </svg>
-                Login
-            </a>
-
-            <!-- Register -->
-            <a href="{{ route('register') }}"
-               class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2"
-                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                          d="M16 21v-2a4 4 0 00-3.6-3.98M12 7a4 4 0 100 8 4 4 0 000-8zM6 21v-2a4 4 0 013-3.87" />
-                </svg>
-                Register
-            </a>
-            @endauth
-        </div>
-    </div>
+        @endif
+    @else
+        <a href="{{ route('login') }}" class="inline-flex items-center gap-1 text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400">
+            🔑 Login
+        </a>
+        <a href="{{ route('register') }}" class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-indigo-700">
+            📝 Register
+        </a>
+    @endauth
+</div>
+  </div>
 </nav>
 
 <!-- Mobile Menu Toggle Script -->
@@ -120,122 +80,109 @@
         navLinks.classList.toggle('hidden');
     });
 </script>
+<!-- Blog Index Layout (responsive sidebar with toggle & animation) -->
 
-<br>
-    <!-- Blog Content -->
-        <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1>
-<!-- Blog Page with Sidebar -->
-<div x-data="{ sidebarOpen: false }" class="container px-4 py-12 mx-auto">
+<div x-data="{ open: window.innerWidth >= 1024 }"
+     class="flex flex-col gap-6 px-4 mx-auto lg:flex-row max-w-7xl sm:px-6 lg:px-8">
 
     <!-- Mobile Toggle Button -->
-    <div class="flex items-center justify-between mb-6 lg:hidden">
-        <h2 class="text-xl font-bold text-indigo-700">Dashboard</h2>
-        <button @click="sidebarOpen = !sidebarOpen" class="p-2 text-indigo-600 rounded-md hover:bg-indigo-100">
-            <svg x-show="!sidebarOpen" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-            <svg x-show="sidebarOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-                 viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+<div class="lg:hidden">
+    <button @click="open = !open"
+            class="px-4 py-2 mb-4 text-white bg-indigo-600 rounded-md shadow">
+        <span x-text="open ? 'Hide Menu' : 'Show Menu'"></span>
+    </button>
+</div>
+    <div x-show="open"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 -translate-x-4"
+         x-transition:enter-end="opacity-100 translate-x-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-x-0"
+         x-transition:leave-end="opacity-0 -translate-x-4"
+
+         class="w-full sm:w-3/4 md:w-1/2 lg:w-64">
+        @include('partials.sidebar')
     </div>
+    <!-- Main Blog Content -->
+    {{-- <main class="w-full lg:w-3/4"> --}}
+        <main class="flex-grow">
+       <h1 class="mb-6 text-2xl font-bold text-center text-indigo-700">Latest Blog Posts</h1>
 
-    <!-- Responsive Layout -->
-    <div class="flex flex-col gap-8 lg:flex-row">
+        <form method="GET" action="{{ route('blog.index') }}" class="max-w-md mx-auto mb-8">
+            <input
+                type="text"
+                name="search"
+                value="{{ request('search') }}"
+                placeholder="Search blog posts..."
+                class="w-full px-4 py-2 border border-indigo-300 rounded-lg shadow-sm focus:ring focus:ring-indigo-200"
+            />
+        </form>
 
-        <!-- Sidebar -->
-<aside :class="{ 'block': sidebarOpen, 'hidden': !sidebarOpen }"
-       class="w-full p-6 transition-all duration-300 border border-indigo-100 shadow-lg lg:w-1/4 bg-gradient-to-br from-indigo-50 to-white rounded-xl lg:block">
+        @if($posts->count())
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        @foreach ($posts as $post)
+            <div class="overflow-hidden transition duration-300 transform bg-white border border-gray-200 rounded-lg shadow-md hover:scale-105">
+                @if ($post->image && Storage::disk('public')->exists($post->image))
+                    <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" class="object-cover w-full h-48">
+                @endif
+                <div class="p-4">
+                    <h2 class="mb-2 text-lg font-semibold text-indigo-800">{{ $post->title }}</h2>
+                    <p class="mb-2 text-sm text-gray-600 dark:text-gray-400">
+                Published: {{ $post->created_at->format('M d, Y') }}
+              </p>
 
-    <!-- Sidebar Header -->
-    <h2 class="flex items-center gap-2 mb-6 text-2xl font-extrabold text-indigo-700">
-        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2"
-             viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4" />
-        </svg>
-        Dashboard
-    </h2>
+                    <p class="mb-3 text-sm text-gray-600">{{ Str::limit($post->description, 80) }}</p>
 
-    <!-- Sidebar Navigation -->
-    <ul class="space-y-4 text-sm">
-        <li>
-            <a href="{{ route('blog.index') }}"
-            class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
-            <span>📚</span>
-            <span>All Posts</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('users.showprofile') }}"
-               class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
-                <span>👤</span>
-                <span>Profile</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('profile.edit') }}"
-               class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
-                <span>✏️</span>
-                <span>Edit Profile</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('blog.myPosts') }}"
-               class="flex items-center gap-3 px-4 py-2 text-indigo-700 transition rounded-lg hover:text-white hover:bg-indigo-600">
-                <span>📄</span>
-                <span>My Blog Posts</span>
-            </a>
-        </li>
-    </ul>
-</aside>
 
-        <!-- Blog Content -->
-        <div class="w-full lg:w-4/4">
-            {{-- <h1 class="mb-8 text-3xl font-extrabold tracking-tight text-center text-indigo-700">Latest Blog Posts</h1> --}}
+                    <a href="{{ route('blog.show', $post->id) }}"
+                       class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition duration-200 hover:text-indigo-800 hover:underline">
+                        Read More
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </a>
 
-            @if($posts->count())
-            <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
-                @foreach ($posts as $post)
-                <div class="overflow-hidden transition duration-300 transform bg-white border border-gray-200 rounded-lg shadow-md hover:scale-105">
-                    @if ($post->image)
-                    <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="object-cover w-full h-36">
-                    @endif
-                    <div class="p-4">
-                        <h2 class="mb-2 text-lg font-semibold text-indigo-800">{{ $post->title }}</h2>
-                        <p class="mb-3 text-sm text-gray-600">{{ Str::limit($post->description, 80) }}</p>
-                        <a href="{{ route('blog.show', $post->id) }}"
-                           class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 transition duration-200 hover:text-indigo-800 hover:underline">
-                            Read More
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"
-                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                        @auth
-                            @if(Auth::user()->isAdmin())
-                                <form method="POST" action="{{ route('blog.destroy', $post->id) }}"
-                                      onsubmit="return confirm('Are you sure you want to delete this post?');"
-                                      class="mt-4">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-800">
-                                        Delete
-                                    </button>
-                                </form>
+                    @auth
+                        @if(Auth::user()->isAdmin())
+                            <form method="POST" action="{{ route('blog.destroy', $post->id) }}"
+                                  onsubmit="return confirm('Are you sure you want to delete this post?');"
+                                  class="mt-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-800">
+                                    Delete
+                                </button>
+                            </form>
                             @endif
                         @endauth
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                        @if(session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
                     </div>
                 </div>
-                @endforeach
-            </div>
-            @else
-            <p class="mt-12 text-lg text-center text-gray-500">No blog posts found.</p>
-            @endif
+            @endforeach
         </div>
+
+        <!-- Pagination Links -->
+        <div class="mt-8">
+            {{ $posts->links('vendor.pagination.tailwind') }}
+        </div>
+
+        @else
+            <p class="mt-12 text-lg text-center text-gray-500">No blog posts found.</p>
+        @endif
+    </main>
+</div>
     </div>
 </div>
 </body>

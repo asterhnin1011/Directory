@@ -29,6 +29,7 @@
                 <option value="Restaurant">Restaurant</option>
                 <option value="Hotel">Hotel</option>
                 <option value="Gas">Gas</option>
+                <option value="Other">Other</option>
             </select>
         </div>
     </div>
@@ -107,7 +108,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Section Title -->
-                    <div class="section-tittle text-center mb-80">
+                    <div class="text-center section-tittle mb-80">
                         <span>Most visited places</span>
                         <h2>Popular Places</h2>
                     </div>
@@ -115,7 +116,7 @@
             </div>
             <div class="row">
                 <!-- Thein Daw Gyi -->
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-location">
                         <div class="location-img">
                             <img src="assets/img/gallery/theindawgyi.png" alt="Thein Daw Gyi">
@@ -127,7 +128,7 @@
                 </div>
 
                 <!-- Smart Island -->
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-location">
                         <div class="location-img">
                             <img src="assets/img/gallery/smart.jpg" alt="Smart Island">
@@ -139,7 +140,7 @@
                 </div>
 
                 <!-- Pahtaw Pahtet -->
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-location">
                         <div class="location-img">
                             <img src="assets/img/gallery/pahtaw.jpg" alt="Pahtaw Pahtet">
@@ -151,7 +152,7 @@
                 </div>
 
                 <!-- Round World Pagoda -->
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-location">
                         <div class="location-img">
                             <img src="assets/img/gallery/roundworld.png" alt="Round World Pagoda">
@@ -163,7 +164,7 @@
                 </div>
 
                 <!-- Regent Hotel -->
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-location">
                         <div class="location-img">
                             <img src="assets/img/gallery/regent.jpg" alt="Regent Hotel">
@@ -175,7 +176,7 @@
                 </div>
 
                 <!-- Hotel Drift -->
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-6">
                     <div class="single-location">
                         <div class="location-img">
                             <img src="assets/img/gallery/hoteldrift.jpg" alt="Hotel Drift">
@@ -190,6 +191,40 @@
     </div>
 </section>
 <!-- Popular Locations End -->
+
+<!--Posts Section Start -->
+<section id="blog" class="pt-70 pb-70">
+    <div class="container">
+        <div class="text-center mb-50">
+            <h2 style="color: #000;">Latest Posts</h2>
+        </div>
+        <div class="row">
+            @if(isset($latestPosts) && $latestPosts->count())
+                @foreach($latestPosts ?? [] as $post)
+<div class="mb-4 col-lg-3 col-md-6">
+                        <div class="shadow-sm card h-100">
+                            @if($post->image)
+                                <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top" alt="{{ $post->title }}">
+                            @else
+                                <img src="{{ asset('assets/img/default.jpg') }}" class="card-img-top" alt="Default">
+                            @endif
+                            <div class="card-body">
+                                <h5 class="card-title">{{ Str::limit($post->title, 50) }}</h5>
+                                <p class="card-text">{{ Str::limit($post->description, 80) }}</p>
+                                <a href="{{ route('blog.index') }}" class="btn btn-primary btn-sm">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p class="text-center">No posts available.</p>
+            @endif
+        </div>
+    </div>
+</section>
+<!--Posts Section End -->
+
+
        <!-- Services Area Start -->
 <section id="work">
   <div class="services-area pt-70 pb-70 section-bg" data-background="assets/img/gallery/how1.jpg">
@@ -197,8 +232,8 @@
       <div class="row">
         <div class="col-lg-12">
           <!-- Section Title -->
-          <div class="section-tittle section-tittle2 text-center mb-40">
-           <span style="font-size: 50px; color: rgba(15, 5, 5, 0.931);">Easy to explore</span>
+          <div class="mb-40 text-center section-tittle section-tittle2">
+           <span style="font-size: 50px; color: rgba(64, 195, 243, 0.931);">Easy to explore</span>
 <h2 style="font-size: 28px; color: rgb(10, 11, 10);">How It Works</h2>
           </div>
         </div>
@@ -206,8 +241,8 @@
       <div class="row justify-content-between">
         <!-- Step 1 -->
         <div class="col-lg-3 col-md-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-icon mb-3">
+          <div class="text-center single-services mb-30">
+            <div class="mb-3 services-icon">
               <span class="flaticon-list" style="font-size: 30px;"></span>
             </div>
             <div class="services-cap">
@@ -219,8 +254,8 @@
         </div>
         <!-- Step 2 -->
         <div class="col-lg-3 col-md-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-icon mb-3">
+          <div class="text-center single-services mb-30">
+            <div class="mb-3 services-icon">
               <span class="flaticon-problem" style="font-size: 30px;"></span>
             </div>
             <div class="services-cap">
@@ -231,8 +266,8 @@
         </div>
         <!-- Step 3 -->
         <div class="col-lg-3 col-md-6">
-          <div class="single-services text-center mb-30">
-            <div class="services-icon mb-3">
+          <div class="text-center single-services mb-30">
+            <div class="mb-3 services-icon">
               <span class="flaticon-respect" style="font-size: 30px;"></span>
             </div>
             <div class="services-cap">
@@ -246,7 +281,7 @@
 </section>
 <!-- Services Area End -->
        <!-- Contact Start -->
-<section id="contact" class="container-fluid py-5 bg-light">
+<section id="contact" class="py-5 container-fluid bg-light">
   <style>
     .custom-card {
       max-width: 700px;
@@ -268,7 +303,7 @@
     <div class="card custom-card">
 
       <!-- Location Icon -->
-      <div class="text-center mb-3">
+      <div class="mb-3 text-center">
         <i class="bi bi-geo-alt-fill fs-1 text-primary"></i>
         <h3 class="mt-2 fw-bold fs-3">Get In Touch</h3>
       </div>
@@ -300,7 +335,7 @@
       </div>
 
       <!-- Social Icons -->
-      <div class="mt-3 d-flex justify-content-center gap-4 fs-4">
+      <div class="gap-4 mt-3 d-flex justify-content-center fs-4">
         <!-- Facebook -->
         <a href="https://www.facebook.com/share/16ew3t9vwy/" title="Facebook" style="color: #1877F2;">
           <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" fill="currentColor" viewBox="0 0 24 24">

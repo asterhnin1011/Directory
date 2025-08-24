@@ -108,9 +108,37 @@
         </form>
     </div>
 </main>
+<!-- SweetAlert CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+      icon: 'success',
+      title: 'Success!',
+      text: '{{ session('success') }}',
+      confirmButtonColor: '#2563eb'  // Blue color
+    });
+  });
+</script>
+@endif
+
+@if(session('error'))
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: '{{ session('error') }}',
+      confirmButtonColor: '#dc2626'  // Red color
+    });
+  });
+</script>
+@endif
 
 <script>
     feather.replace()
 </script>
 </body>
-</html> 
+</html>

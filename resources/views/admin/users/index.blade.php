@@ -1,6 +1,3 @@
-@extends('layouts.app') {{-- Adjust layout if yours is different --}}
-
-@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +23,6 @@
     </style>
 </head>
 <body>
-
 <div class="container py-4">
     <!-- Page Header -->
     <div class="mb-4 d-flex justify-content-between align-items-center page-header">
@@ -116,4 +112,4 @@
 
 </body>
 </html>
-@endsection
+{{-- @endsection --}}

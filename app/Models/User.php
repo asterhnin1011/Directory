@@ -13,7 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email','address', 'phone', 'country', 'date_of_birth','password',
     ];
 
     protected $hidden = [
@@ -26,12 +26,17 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public function isAdmin()
-    {
-        return $this->role === 1;
-    }
+{
+    return $this->role == 1; 
+}
 
-    public function isUser()
-    {
-        return $this->role === 0;
-    }
+public function isUser()
+{
+    return $this->role == 0;
+}
+
+public function posts()
+{
+    return $this->hasMany(Post::class);
+}
 }

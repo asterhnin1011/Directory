@@ -38,6 +38,11 @@
         <i class="fas fa-file-alt me-2"></i>View Posts
     </button>
 </a>
+<a href="{{ route('admin.users.viewcomment') }}">
+    <button class="mt-2 btn btn-success mt-md-0">
+        <i class="fas fa-comments me-2"></i>View Comments
+    </button>
+</a>
                                 <button class="btn btn-primary" data-bs-toggle="collapse"
                                     data-bs-target="#multiCollapseExample1">
                                     <i class="fas fa-plus-circle me-2"></i>Create POI
@@ -194,10 +199,10 @@ document.getElementById('logout-form').submit();">
                     <div class="card-body">
                         <form action="{{ route('admin.store') }}" method="POST">
                             @csrf
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="fid" class="form-label">FID</label>
                                 <input type="number" class="form-control" id="fid" name="fid" placeholder="Enter FID">
-                            </div>
+                            </div> --}}
                             <div class="mb-3">
                                 <label for="poi_n_eng" class="form-label">Poi_N_Eng <span
                                         class="text-danger">*</span></label>
@@ -302,7 +307,7 @@ document.getElementById('logout-form').submit();">
                             </div>
 
                             <div class="mb-3">
-                                <label for="verify_dat" class="form-label">Verify Date <span
+                                <label for="verify_dat" class="form-label">Created Date <span
                                         class="text-danger">*</span></label>
                                 <input type="date" class="form-control" id="verify_dat" name="verify_dat" required>
                             </div>
@@ -328,7 +333,7 @@ document.getElementById('logout-form').submit();">
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="verify_remark" class="form-label">Verify Remark</label>
                                 <textarea class="form-control" id="verify_remark" name="verify_remark" rows="2"
                                     placeholder="Enter verification remarks"></textarea>
@@ -338,7 +343,7 @@ document.getElementById('logout-form').submit();">
                                 <label for="remark" class="form-label">General Remark</label>
                                 <textarea class="form-control" id="remark" name="remark" rows="2"
                                     placeholder="Enter general remarks"></textarea>
-                            </div>
+                            </div> --}}
 
                             <input type="hidden" name="created_by" value="1">
                             <input type="hidden" name="user_id" value="1">
@@ -347,10 +352,25 @@ document.getElementById('logout-form').submit();">
                                 <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-save me-2"></i>Create POI
                                 </button>
-                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
+
+<button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#multiCollapseExample1">
                                     <i class="fas fa-times me-2"></i>Cancel
                                 </button>
+                                 <!-- Include SweetAlert CDN if not already -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: true
+    });
+</script>
+@endif
                             </div>
                         </form>
                     </div>
@@ -396,24 +416,15 @@ document.getElementById('logout-form').submit();">
         <h3 class="mb-0">{{ $totalUsers }}</h3>
     </div>
 </div>
-            {{-- <div class="mb-3 d-flex align-items-center">
-                <div class="p-3 rounded-circle bg-success bg-opacity-10 me-3">
-                    <i class="fas fa-check-circle text-success"></i>
-                </div>
-                <div>
-                    <h6 class="mb-0">Verified</h6>
-                    <h3 class="mb-0">{{ $pois->where('verify_dat', !null)->count() }}</h3>
-                </div>
-            </div> --}}
-            {{-- <div class="d-flex align-items-center">
-                <div class="p-3 rounded-circle bg-warning bg-opacity-10 me-3">
-                    <i class="fas fa-clock text-warning"></i>
-                </div>
-                <div>
-                    <h6 class="mb-0">Pending</h6>
-                    <h3 class="mb-0">{{ $pois->where('verify_dat', 'NULL')->count() }}</h3>
-                </div>
-            </div> --}}
+<div class="mb-3 d-flex align-items-center">
+    <div class="p-3 rounded-circle bg-success bg-opacity-10 me-3">
+        <i class="fas fa-comments text-success"></i>
+    </div>
+    <div>
+        <h6 class="mb-0">Total Comments</h6>
+        <h3 class="mb-0">{{ $totalComments }}</h3>
+    </div>
+</div>
         </div>
     </div>
 </div>

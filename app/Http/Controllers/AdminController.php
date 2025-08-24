@@ -11,6 +11,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\PoisImport;
 use Illuminate\Support\Facades\Log;
 use App\Models\User;
+use App\Models\Comment;
+
 class AdminController extends Controller
 {
     /**
@@ -26,7 +28,8 @@ class AdminController extends Controller
         });
   $posts = Post::latest()->get(); // Fetch all posts
   $totalUsers = User::count();
-        return view('admin.home', compact('pois', 'posts' , 'totalUsers'));
+$totalComments = Comment::count();
+        return view('admin.home', compact('pois', 'posts' , 'totalUsers','totalComments'));
     }
 
     public function testing()

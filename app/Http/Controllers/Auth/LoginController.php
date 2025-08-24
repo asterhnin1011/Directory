@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -37,20 +38,37 @@ class LoginController extends Controller
     {
         return view('auth.login');
     }
+    
     //Hidden request login
-    public function login(Request $request)
-    {
-        // dd('sd');
-        $credentials = $request->only('email', 'password');
+   public function login(Request $request)
+{
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed
-            return redirect()->intended('/admin'); // Redirect to intended page or home
-        }
+    $user = \App\Models\User::where('email', $credentials['email'])->first();
 
-        // Authentication failed
-        return redirect()->back()->withErrors(['email' => 'Invalid credentials'])->withInput();
+    if (!$user) {
+        return redirect()->back()
+            ->withErrors(['email' => 'Invalid credentials'])
+            ->withInput();
     }
+
+    if (!Hash::check($credentials['password'], $user->password)) {
+        return redirect()->back()
+            ->withErrors(['email' => 'Invalid credentials'])
+            ->withInput();
+    }
+
+    if (!$user->hasVerifiedEmail()) {
+        return redirect()->back()
+            ->with('error', 'Your email address is not verified. Please check your inbox.')
+            ->withInput();
+    }
+
+
+    Auth::login($user);
+
+    return redirect()->intended('/admin');
+}
     //logout
     public function logout(Request $request)
     {

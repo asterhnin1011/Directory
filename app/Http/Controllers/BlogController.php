@@ -6,23 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+
+
 class BlogController extends Controller
 {
-    //
-     // Show the blog homepage or list of posts
-   public function index()
-{
-    $posts = Post::all(); // or ->get() if you don't want pagination
-    return view('blog.index', compact('posts')); // Make sure to use 'posts'
-}
 
+     // Show the blog homepage or list of posts
+    public function index(Request $request)
+    {
+        $search = $request->input('search');
+         $posts = Post::query()
+        ->when($search, function ($query, $search) {
+            $query->where('title', 'like', "%{$search}%")
+                  ->orWhere('description', 'like', "%{$search}%");
+        })
+        ->latest()
+        ->paginate(6)
+        ->appends(['search' => $search]);
+        $latestPosts = Post::orderBy('id', 'desc')->take(4)->get();
+    return view('blog.index', compact('posts','latestPosts'));
+    }
     // Show a single blog post
     public function show($id)
-    {
-        $post = Post::findOrFail($id);
+{
+    $post = Post::findOrFail($id);
 
-        return view('blog.show', compact('post'));
-    }
+    return view('blog.show', compact('post'));
+}
     // Store a newly created post
     public function create()
 {
@@ -38,8 +48,8 @@ public function store(Request $request)
     ]);
 
     if ($request->hasFile('image')) {
-        $validated['image'] = $request->file('image')->store('posts', 'public');
-    }
+    $validated['image'] = $request->file('image')->store('posts', 'public');
+}
 
     $validated['user_id'] = auth()->id();
 
@@ -47,7 +57,6 @@ public function store(Request $request)
 
     return redirect()->route('blog.index')->with('success', 'Post created successfully.');
 }
-
     public function __construct()
 {
     $this->middleware('auth')->except(['index', 'show']);
@@ -111,11 +120,15 @@ public function destroy(Post $post)
     return redirect()->route('blog.show', $post->id)
                      ->with('success', 'Post updated successfully!');
 }
-public function myPosts()
+public function postListing()
 {
-    $user = Auth::user();
-    $posts = $user->posts()->latest()->get(); // Assumes 'posts' relationship exists in User model
+    $user = auth()->user();
 
-    return view('blog.myPosts', compact('posts'));
+    // Get only posts created by the logged-in user, sorted by latest
+    $posts = Post::where('user_id', $user->id)
+                 ->orderBy('created_at', 'desc')
+                 ->paginate(6);  // paginate if needed
+
+    return view('myposts.postlisting', compact('posts'));
 }
 }

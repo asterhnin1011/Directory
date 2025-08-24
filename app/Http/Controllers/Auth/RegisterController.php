@@ -32,9 +32,13 @@ class RegisterController extends Controller
             'regex:/[a-z]/',      // at least one letter
             'regex:/[0-9]/',      // at least one number
             'regex:/[@$!%*#?&]/', // at least one special character
-            'confirmed'
-        ],
-    ], [
+            'confirmed'],
+        'address' => 'required|string|max:255',
+        'phone' => 'required|string|min:11|max:14',
+        'country' => 'required|string|max:100',
+        'date_of_birth' => 'required|date|before:today',
+    ],
+    [
         'password.regex' => 'Password must contain at least one letter, one number, and one special character.'
     ]);
 
@@ -42,10 +46,14 @@ class RegisterController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
+        'address'  => $request->address,
+        'phone'    => $request->phone,
+        'country'  => $request->country,
+        'date_of_birth' => $request->date_of_birth,
     ]);
 
     event(new Registered($user));
-    
+
     Auth::login($user);
 
     // Flash success message
