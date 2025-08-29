@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>My Blog Posts</title>
@@ -64,7 +64,6 @@
     </div>
   </div>
 </nav>
-
 <!-- Mobile Toggle Script -->
 <script>
   document.getElementById('menu-toggle').addEventListener('click', function () {
@@ -82,7 +81,6 @@
        @click.outside="if (window.innerWidth < 1024) open = false">
     @include('partials.sidebar')
   </div>
-
   <!-- Main Content -->
   <main class="flex-1 px-6 py-8">
     <h1 class="text-3xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-8 text-center">My Blog Posts</h1>
@@ -131,6 +129,5 @@
     @endif
   </main>
 </div>
-
 </body>
 </html>

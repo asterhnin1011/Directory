@@ -177,9 +177,9 @@ document.getElementById('logout-form').submit();">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </button>
                                             </form>
-                                            <button class="btn btn-sm btn-info view-details" data-id="{{ $poi->id }}">
+                                            {{-- <button class="btn btn-sm btn-info view-details" data-id="{{ $poi->id }}">
                                                 <i class="fas fa-eye"></i>
-                                            </button>
+                                            </button> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -221,6 +221,7 @@ document.getElementById('logout-form').submit();">
                                 <select class="form-select" id="type" name="type" required>
                                     <option value="">Select type</option>
                                     <option value="Restaurant">Restaurant</option>
+                                    <option value="Shop">Shop</option>
                                     <option value="Hotel">Hotel</option>
                                     <option value="Hospital">Hospital</option>
                                     <option value="School">School</option>
